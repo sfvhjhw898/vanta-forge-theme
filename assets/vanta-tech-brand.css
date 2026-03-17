@@ -16,7 +16,7 @@
   --vanta-tech-glass: rgba(5, 5, 16, 0.72);
   --vanta-tech-glass-border: rgba(5, 5, 16, 0.45);
   --vanta-tech-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  --forge-font-heading: 'Geist', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --forge-font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --forge-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --color-button: 0 102 255;
   --color-button-text: 255 255 255;
@@ -33,7 +33,7 @@
   border-color: #0066FF !important;
 }
 
-/* 2. Typography — Geist/DM Sans headings */
+/* 2. Typography — Cormorant Garamond headings */
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6,
 .card__heading,
@@ -41,87 +41,107 @@ h1, h2, h3, h4, h5, h6,
 .product__title,
 .collection__title,
 .section-header__heading,
-.footer__heading,
+.rich-text__heading,
+.blog-post__title,
 .article__title {
   font-family: var(--forge-font-heading);
   letter-spacing: -0.02em;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--vanta-tech-text);
 }
 
-h1, .h1 { font-size: clamp(2.8rem, 5vw, 5.6rem); line-height: 1.1; }
-h2, .h2 { font-size: clamp(2.2rem, 4vw, 4.2rem); line-height: 1.15; }
-h3, .h3 { font-size: clamp(1.8rem, 3vw, 3.2rem); line-height: 1.2; }
-h4, .h4 { font-size: clamp(1.4rem, 2.5vw, 2.4rem); line-height: 1.3; }
+h1, .h1 {
+  font-size: clamp(3.2rem, 5vw, 6.4rem);
+  line-height: 1.1;
+}
 
-body, p, .body-text, .card__information, .product__description {
+h2, .h2 {
+  font-size: clamp(2.4rem, 4vw, 4.8rem);
+  line-height: 1.15;
+}
+
+h3, .h3 {
+  font-size: clamp(2rem, 3vw, 3.6rem);
+  line-height: 1.2;
+}
+
+h4, .h4 {
+  font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+  line-height: 1.3;
+}
+
+body,
+.body,
+p,
+.caption,
+.card__information {
   font-family: var(--forge-font-body);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
+  color: var(--vanta-tech-text);
 }
 
 /* 3. Glassmorphic Navigation */
 .shopify-section-header-sticky .header-wrapper {
-  background: rgba(5, 5, 16, 0.85) !important;
+  background: rgba(5, 5, 16, 0.85);
   backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(0, 102, 255, 0.45);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-wrapper {
-  background: rgba(5, 5, 16, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
 }
 
-.header__heading-link,
+.header__heading-link {
+  color: var(--vanta-tech-text);
+}
+
 .header__menu-item {
-  color: var(--vanta-tech-text) !important;
-  font-family: var(--forge-font-body);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.2s ease;
 }
 
 .header__menu-item:hover {
-  color: var(--vanta-tech-primary) !important;
+  color: var(--vanta-tech-primary);
 }
 
 /* 4. Buttons */
 .button,
 .button--primary,
-.product-form__submit,
-.shopify-payment-button__button--unbranded {
+.shopify-challenge__button,
+.customer button[type="submit"],
+input[type="submit"].button {
   background-color: var(--vanta-tech-primary);
-  color: var(--vanta-tech-text);
+  color: #FFFFFF;
   border: 1px solid var(--vanta-tech-primary);
-  border-radius: 12px;
-  padding: 14px 32px;
+  border-radius: 0.8rem;
+  padding: 1.4rem 3.2rem;
   font-family: var(--forge-font-body);
   font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: -0.01em;
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 12px rgba(0, 102, 255, 0.24);
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
 }
 
 .button:hover,
-.button--primary:hover,
-.product-form__submit:hover {
+.button--primary:hover {
   transform: scale(1.01) translateY(-1px);
-  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.4), 0 8px 24px rgba(0, 102, 255, 0.32);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.35), 0 0 0 1px var(--vanta-tech-primary);
   background-color: #0052CC;
+}
+
+.button:active {
+  transform: scale(0.98);
 }
 
 .button--secondary {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--vanta-tech-text);
+  color: var(--vanta-tech-primary);
+  border: 1px solid var(--vanta-tech-primary);
 }
 
 .button--secondary:hover {
-  border-color: var(--vanta-tech-primary);
   background-color: rgba(0, 102, 255, 0.08);
 }
 
@@ -131,13 +151,12 @@ body, p, .body-text, .card__information, .product__description {
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 16px !important;
   overflow: hidden !important;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
 .card-wrapper:hover {
   box-shadow: 0 0 0 1.5px #0066FF, 0 0 28px rgba(0, 102, 255, 0.32), 0 0 56px rgba(0, 212, 255, 0.08) !important;
   border-color: #0066FF !important;
-  transform: translateY(-2px);
 }
 
 .card__media {
@@ -175,13 +194,19 @@ body, p, .body-text, .card__information, .product__description {
   font-weight: 500;
 }
 
-.price--on-sale .price__sale {
-  color: var(--vanta-tech-accent);
+.card__badge {
+  background: var(--vanta-tech-primary);
+  color: #FFFFFF;
+  border-radius: 0.6rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* 6. Collection Cards */
 .collection-card,
-.card--card {
+.card--card,
+.collection-list .card-wrapper {
   border-radius: 2rem;
   overflow: hidden;
   background: #0D0D1F;
@@ -191,65 +216,83 @@ body, p, .body-text, .card__information, .product__description {
 
 .collection-card:hover,
 .card--card:hover {
-  border-color: var(--vanta-tech-primary);
-  box-shadow: 0 0 0 1px var(--vanta-tech-primary), 0 12px 32px rgba(0, 102, 255, 0.24);
   transform: translateY(-4px);
+  box-shadow: 0 0 0 1.5px #0066FF, 0 12px 40px rgba(0, 102, 255, 0.24);
+  border-color: var(--vanta-tech-primary);
 }
 
 .collection-card__image,
-.card__media {
+.card--media {
   border-radius: 2rem 2rem 0 0;
   overflow: hidden;
 }
 
 .collection-card__info {
-  padding: 1.6rem;
+  padding: 2rem;
   background: #0D0D1F;
+}
+
+.card__content {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* 7. Cart Drawer */
 .drawer,
-.cart-drawer {
-  background: rgba(5, 5, 16, 0.96) !important;
+.cart-drawer,
+#CartDrawer {
+  background: rgba(5, 5, 16, 0.92);
   backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-left: 1px solid rgba(0, 102, 255, 0.3);
+  border-left: 1px solid rgba(0, 102, 255, 0.25);
+  color: var(--vanta-tech-text);
 }
 
 .cart-drawer__heading {
   font-family: var(--forge-font-heading);
   color: var(--vanta-tech-text);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cart-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cart-item__name {
+  color: var(--vanta-tech-text);
+}
+
+.cart-drawer__footer {
+  background: rgba(5, 5, 16, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#CartDrawer-Checkout,
+.cart__checkout-button {
+  background-color: var(--vanta-tech-primary) !important;
+  color: #FFFFFF !important;
+  border-radius: 1.2rem;
   font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.3);
 }
 
-.cart-item__details {
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.cart-drawer__footer .button {
-  background-color: var(--vanta-tech-primary);
-  width: 100%;
-  padding: 18px;
-  font-size: 1.1rem;
-}
-
-.cart-drawer__footer .button:hover {
-  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.5), 0 8px 32px rgba(0, 102, 255, 0.4);
+#CartDrawer-Checkout:hover {
+  box-shadow: 0 6px 24px rgba(0, 102, 255, 0.45);
+  transform: translateY(-2px);
 }
 
 /* 8. Variant Selectors */
 .product-form__input input[type="radio"] + label,
-.variant-input-wrapper .variant-input {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 10px 16px;
+.variant-input-wrapper .variant-input__label,
+fieldset.product-form__input .form__label {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.8rem;
+  padding: 1rem 1.6rem;
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--vanta-tech-text);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .product-form__input input[type="radio"]:checked + label,
-.variant-input-wrapper .variant-input.active {
+.variant-input-wrapper input:checked + label {
   background: var(--vanta-tech-primary);
   border-color: var(--vanta-tech-primary);
   color: #FFFFFF;
@@ -257,212 +300,254 @@ body, p, .body-text, .card__information, .product__description {
 }
 
 .product-form__input input[type="radio"] + label:hover,
-.variant-input-wrapper .variant-input:hover {
+.variant-input-wrapper .variant-input__label:hover {
   border-color: var(--vanta-tech-primary);
-  background: rgba(0, 102, 255, 0.1);
+  background: rgba(0, 102, 255, 0.08);
 }
 
 /* 9. Filter Chips */
-.facets__pill,
-.active-facets__button,
+.facets__disclosure,
+.facet-filters__field,
 .facet-checkbox input[type="checkbox"] + label {
   border-radius: 100px;
-  padding: 8px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--vanta-tech-text);
-  font-family: var(--forge-font-body);
-  font-weight: 500;
-  font-size: 0.9rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
   transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.75);
 }
 
-.facets__pill.active,
-.active-facets__button,
-.facet-checkbox input[type="checkbox"]:checked + label {
+.facet-checkbox input[type="checkbox"]:checked + label,
+.facets__disclosure[open] summary {
   background: var(--vanta-tech-primary);
   border-color: var(--vanta-tech-primary);
   color: #FFFFFF;
-  box-shadow: 0 2px 12px rgba(0, 102, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
 }
 
-.facets__pill:hover,
-.facet-checkbox input[type="checkbox"] + label:hover {
+.facet-checkbox label:hover,
+.facets__disclosure summary:hover {
   border-color: var(--vanta-tech-primary);
-  background: rgba(0, 102, 255, 0.15);
+  background: rgba(0, 102, 255, 0.08);
+}
+
+.active-facets__button {
+  background: var(--vanta-tech-primary);
+  color: #FFFFFF;
+  border-radius: 100px;
+  border: none;
 }
 
 /* 10. Announcement Bar */
-.announcement-bar {
+.announcement-bar,
+.shopify-section-group-header-group .announcement-bar {
   background: var(--vanta-tech-primary);
-  color: var(--vanta-tech-text);
-  font-family: var(--forge-font-body);
+  color: #FFFFFF;
+  font-family: var(--forge-font-heading);
   font-style: italic;
-  font-weight: 500;
-  padding: 12px 0;
+  font-size: 1.4rem;
+  padding: 1.2rem 2rem;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.02em;
 }
 
-.announcement-bar__message {
-  color: var(--vanta-tech-text);
-  letter-spacing: 0.02em;
+.announcement-bar__link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.announcement-bar__link:hover {
+  opacity: 0.85;
 }
 
 /* 11. Marquee Status Strip */
 @keyframes pittch-marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .forge-marquee {
   overflow: hidden;
-  white-space: nowrap;
-  background: rgba(0, 102, 255, 0.08);
-  border-top: 1px solid rgba(0, 102, 255, 0.2);
-  border-bottom: 1px solid rgba(0, 102, 255, 0.2);
-  padding: 16px 0;
+  background: #0D0D0D;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.6rem 0;
 }
 
 .forge-marquee__track {
-  display: inline-block;
+  display: flex;
   animation: pittch-marquee 35s linear infinite;
   will-change: transform;
 }
 
 .forge-marquee__item {
-  display: inline-block;
-  padding: 0 48px;
   font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  padding: 0 3.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
 }
 
 .forge-marquee__item::before {
   content: '●';
-  margin-right: 48px;
   color: var(--vanta-tech-primary);
+  font-size: 0.8rem;
+}
+
+.forge-marquee__item::after {
+  content: '|';
+  color: rgba(255, 255, 255, 0.15);
+  margin-left: 1.6rem;
 }
 
 /* 12. Footer */
-.footer {
+.footer,
+.shopify-section-group-footer-group {
   background: var(--vanta-tech-primary);
-  color: var(--vanta-tech-text);
-  padding: 64px 0 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  padding: 5.6rem 0 3.2rem;
 }
 
 .footer__heading {
   font-family: var(--forge-font-heading);
-  color: var(--vanta-tech-text);
-  font-weight: 600;
-  margin-bottom: 16px;
+  color: #FFFFFF;
+  font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.footer__list-social,
+.footer__list {
+  list-style: none;
+  padding: 0;
 }
 
 .footer__list-social a,
-.footer a,
-.footer__copyright {
+.footer a {
   color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
+.footer__list-social a:hover,
 .footer a:hover {
   color: #FFFFFF;
   text-decoration: underline;
 }
 
-.footer__blocks-wrapper {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  padding-bottom: 32px;
-  margin-bottom: 24px;
+.footer__copyright {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.3rem;
+  margin-top: 3.2rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* 13. Scroll Reveal Augmentation */
-.animate--fade-in {
-  transition-duration: 0.8s !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+.animate--fade-in,
+.scroll-trigger.animate--fade-in {
+  transition-duration: 0.8s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .animate--slide-in {
-  transition-duration: 0.9s !important;
-  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* 14. Section Spacing */
-.section,
-.shopify-section {
+.shopify-section,
+.section {
+  padding: 5.6rem 0;
+}
+
+.section--padding {
   padding-top: 5.6rem;
   padding-bottom: 5.6rem;
 }
 
-.section--padding {
-  padding-top: 7.2rem;
-  padding-bottom: 7.2rem;
-}
-
-@media screen and (max-width: 749px) {
-  .section,
-  .shopify-section {
-    padding-top: 3.6rem;
-    padding-bottom: 3.6rem;
+@media screen and (min-width: 750px) {
+  .shopify-section,
+  .section {
+    padding: 7.2rem 0;
+  }
+  
+  .section--padding {
+    padding-top: 7.2rem;
+    padding-bottom: 7.2rem;
   }
 }
 
-/* 15. Glass Panel Utility */
-.glass-panel {
-  background: var(--vanta-tech-glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--vanta-tech-glass-border);
-  border-radius: 20px;
-  box-shadow: var(--vanta-tech-glass-shadow);
-  padding: 32px;
+.page-width {
+  max-width: 140rem;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.glass-panel--dark {
-  background: rgba(13, 13, 31, 0.85);
-  border-color: rgba(0, 102, 255, 0.3);
+/* 15. Glass Panel Utility */
+.glass-panel,
+.forge-glass {
+  background: var(--vanta-tech-glass);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--vanta-tech-glass-border);
+  border-radius: 1.6rem;
+  box-shadow: var(--vanta-tech-glass-shadow);
+}
+
+.glass-panel--strong {
+  background: rgba(5, 5, 16, 0.88);
+  backdrop-filter: blur(20px) saturate(200%);
 }
 
 /* 16. Search / Inputs */
-.search__input,
-.field__input,
 input[type="text"],
 input[type="email"],
+input[type="password"],
+input[type="search"],
 input[type="tel"],
-textarea {
-  background: rgba(255, 255, 255, 0.05);
+textarea,
+select,
+.field__input {
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  border-radius: 0.8rem;
   color: var(--vanta-tech-text);
-  padding: 12px 16px;
+  padding: 1.2rem 1.6rem;
   font-family: var(--forge-font-body);
   transition: all 0.2s ease;
 }
 
-.search__input:focus,
-.field__input:focus,
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-textarea:focus {
-  border-color: var(--vanta-tech-primary);
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2), 0 4px 16px rgba(0, 102, 255, 0.15);
+input:focus,
+textarea:focus,
+select:focus,
+.field__input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--vanta-tech-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2), 0 0 16px rgba(0, 102, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.search__input {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .search__button {
-  background: var(--vanta-tech-primary);
-  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.search__button:hover {
+  color: var(--vanta-tech-primary);
 }
 
 /* 17. Links & Accents */
 a {
-  color: var(--vanta-tech-text);
+  color: rgba(255, 255, 255, 0.85);
   transition: color 0.2s ease;
 }
 
@@ -470,66 +555,74 @@ a:hover {
   color: var(--vanta-tech-primary);
 }
 
-.link--text:hover {
-  text-decoration-color: var(--vanta-tech-primary);
-}
-
-.underlined-link {
-  text-decoration-color: rgba(0, 102, 255, 0.4);
-}
-
-.underlined-link:hover {
-  text-decoration-color: var(--vanta-tech-primary);
+.link--text {
   color: var(--vanta-tech-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.link--text:hover {
+  color: #0052CC;
 }
 
 /* 18. Mega Menu */
 .mega-menu,
 .header__submenu {
-  background: rgba(5, 5, 16, 0.96);
+  background: rgba(5, 5, 16, 0.95);
   backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(0, 102, 255, 0.2);
-  border-radius: 16px;
+  border: 1px solid rgba(0, 102, 255, 0.25);
+  border-radius: 1.2rem;
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
 }
 
 .mega-menu__link,
 .header__submenu .header__menu-item {
-  color: rgba(255, 255, 255, 0.85);
-  padding: 12px 20px;
-  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 1rem 1.6rem;
+  border-radius: 0.6rem;
   transition: all 0.2s ease;
 }
 
 .mega-menu__link:hover,
 .header__submenu .header__menu-item:hover {
+  color: #FFFFFF;
   background: rgba(0, 102, 255, 0.12);
+}
+
+.mega-menu__link.mega-menu__link--active {
   color: var(--vanta-tech-primary);
+  background: rgba(0, 102, 255, 0.08);
 }
 
 /* 19. Mobile Enhancements */
 @media screen and (max-width: 749px) {
   .button,
   .product-form__submit,
-  .header__icon,
-  .mobile-facets__open {
+  .shopify-payment-button__button {
     min-height: 44px;
+    padding: 1.2rem 2.4rem;
+  }
+  
+  .header__icon,
+  .header__menu-item {
     min-width: 44px;
+    min-height: 44px;
   }
-
-  .cart-drawer {
-    width: 100vw;
+  
+  .cart-drawer,
+  #CartDrawer {
+    width: 100%;
+    max-width: 100%;
   }
-
-  .header__icon--menu {
-    padding: 12px;
-  }
-
-  .mobile-facets__wrapper {
+  
+  .menu-drawer {
     background: rgba(5, 5, 16, 0.98);
     backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+  }
+  
+  .menu-drawer__navigation-link {
+    padding: 1.6rem 2rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -545,70 +638,81 @@ a:hover {
   transform: translate(-50%, -50%);
   background: rgba(0, 102, 255, 0.95);
   backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 100px;
-  padding: 8px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 24px rgba(0, 102, 255, 0.3);
+  padding: 0.8rem 2.4rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 24px rgba(0, 102, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 3;
-}
-
-.header__inline-menu .list-menu {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.header__inline-menu .list-menu__item {
-  margin: 0;
-}
-
-.header__inline-menu .header__menu-item {
-  color: #FFFFFF !important;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 8px 16px;
-  border-radius: 100px;
-  transition: all 0.2s ease;
-}
-
-.header__inline-menu .header__menu-item:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #FFFFFF !important;
 }
 
 .header-wrapper .header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 24px;
+  gap: 2rem;
 }
 
 .header__icons {
   grid-column: 1;
   justify-self: start;
+  display: flex;
+  gap: 1.2rem;
+  z-index: 4;
+}
+
+.header__inline-menu {
+  grid-column: 2;
+  position: static;
+  transform: none;
+  left: auto;
+  top: auto;
 }
 
 .header__heading {
   grid-column: 3;
   justify-self: end;
+  z-index: 4;
+}
+
+.header__inline-menu .list-menu {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header__inline-menu .list-menu__item {
+  list-style: none;
+}
+
+.header__inline-menu .header__menu-item {
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 1.4rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 100px;
+  transition: background 0.2s ease;
+}
+
+.header__inline-menu .header__menu-item:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 @media screen and (max-width: 989px) {
   .header__inline-menu {
     display: none;
   }
-
+  
   .header-wrapper .header {
     grid-template-columns: auto 1fr auto;
   }
-
-  .header__heading {
-    grid-column: 2;
-    justify-self: center;
-  }
-
+  
   .header__icons {
+    grid-column: 1;
+  }
+  
+  .header__heading {
     grid-column: 3;
   }
 }
@@ -619,14 +723,13 @@ a:hover {
   inset: 0;
   background: rgba(0, 102, 255, 0.97);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transform: translateY(100%);
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 2.4rem;
   color: #FFFFFF;
+  pointer-events: none;
   z-index: 2;
 }
 
@@ -636,43 +739,41 @@ a:hover {
 }
 
 .forge-reveal__label {
-  font-family: var(--forge-font-body);
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.8rem;
 }
 
 .forge-reveal__title {
   font-family: var(--forge-font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #FFFFFF;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
 }
 
 .forge-reveal__description {
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 1.4rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
   flex-grow: 1;
 }
 
 .forge-reveal__features {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .forge-reveal__feature {
   background: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 0.85rem;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   text-align: center;
 }
@@ -680,167 +781,119 @@ a:hover {
 .forge-reveal__actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .forge-reveal__add-btn {
   background: #FFFFFF;
   color: var(--vanta-tech-primary);
   border: none;
-  border-radius: 10px;
-  padding: 14px;
+  border-radius: 0.8rem;
+  padding: 1.4rem;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .forge-reveal__add-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
   transform: scale(1.02);
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
 }
 
 .forge-reveal__view-btn {
   background: transparent;
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-  padding: 12px;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .forge-reveal__view-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
   border-color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.1);
 }
 
 /* 22. Product Page */
 .product__title {
   font-family: var(--forge-font-heading);
-  font-size: clamp(2.4rem, 4vw, 4.8rem);
-  font-weight: 600;
+  font-size: clamp(3.2rem, 5vw, 5.6rem);
   letter-spacing: -0.02em;
   color: var(--vanta-tech-text);
-  margin-bottom: 16px;
+  margin-bottom: 1.6rem;
 }
 
 .product__description {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 32px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.4rem;
 }
 
 .product-form__submit {
+  background-color: var(--vanta-tech-primary);
+  color: #FFFFFF;
+  border-radius: 1.2rem;
+  padding: 1.8rem 4rem;
+  font-weight: 600;
+  font-size: 1.6rem;
   width: 100%;
-  padding: 18px;
-  font-size: 1.1rem;
-  background: var(--vanta-tech-primary);
-  margin-top: 24px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.3);
 }
 
-.product__media-wrapper {
+.product-form__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 102, 255, 0.45);
+  background-color: #0052CC;
+}
+
+.product__media-wrapper,
+.product__media-item {
   border-radius: 2rem;
   overflow: hidden;
   background: #0D0D1F;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.product__media-item {
-  border-radius: 2rem;
 }
 
 .product__info-wrapper {
-  background: rgba(13, 13, 31, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 2rem;
-  padding: 40px;
-  border: 1px solid rgba(0, 102, 255, 0.2);
+  color: var(--vanta-tech-text);
+}
+
+.price__regular {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--vanta-tech-text);
+}
+
+.price__sale {
+  color: var(--vanta-tech-primary);
 }
 
 /* 23. Accessibility */
 *:focus-visible {
   outline: 2px solid var(--vanta-tech-primary);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 0.4rem;
 }
 
 .skip-to-content-link {
+  position: absolute;
+  top: -100px;
+  left: 2rem;
   background: var(--vanta-tech-primary);
   color: #FFFFFF;
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: 1.2rem 2.4rem;
+  border-radius: 0.8rem;
   font-weight: 600;
+  z-index: 9999;
+  transition: top 0.3s ease;
 }
 
 .skip-to-content-link:focus {
-  outline: 3px solid #FFFFFF;
-  outline-offset: 4px;
-}
-
-.visually-hidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-}
-
-/* 24. Page Intro Animation */
-html.forge-intro-init .header-wrapper,
-html.forge-intro-init .forge-hero__media,
-html.forge-intro-init .header__inline-menu,
-html.forge-intro-init .forge-hero__title,
-html.forge-intro-init .forge-scroll-hint {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-html.forge-intro-init.forge-intro-play .header-wrapper,
-html.forge-intro-init.forge-intro-play .forge-hero__media,
-html.forge-intro-init.forge-intro-play .header__inline-menu,
-html.forge-intro-init.forge-intro-play .forge-hero__title,
-html.forge-intro-init.forge-intro-play .forge-scroll-hint {
-  transition-property: opacity, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html.forge-intro-play .header-wrapper {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.2s;
-  transition-duration: 0.8s;
-}
-
-html.forge-intro-play .forge-hero__media {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.5s;
-  transition-duration: 1s;
-}
-
-html.forge-intro-play .header__inline-menu {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.7s;
-  transition-duration: 0.8s;
-}
-
-html.forge-intro-play .forge-hero__title {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.9s;
-  transition-duration: 1s;
-}
-
-html.forge-intro-play .forge-scroll-hint {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 1.3s;
-  transition-duration: 
+  top
