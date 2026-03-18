@@ -72,24 +72,27 @@
       }
     },
     "forge_showcase": {
-      "type": "forge-collection-showcase",
+      "type": "multicolumn",
       "blocks": {
         "stack_1": {
-          "type": "collection_stack",
+          "type": "column",
           "settings": {
-            "label": "Latest"
+            "title": "Latest",
+            "text": "Explore our latest — the latest from VANTA Tech."
           }
         },
         "stack_2": {
-          "type": "collection_stack",
+          "type": "column",
           "settings": {
-            "label": "Accessories"
+            "title": "Accessories",
+            "text": "The accessories range. Core pieces worth keeping."
           }
         },
         "stack_3": {
-          "type": "collection_stack",
+          "type": "column",
           "settings": {
-            "label": "Gift Sets"
+            "title": "Gift Sets",
+            "text": "Perfectly presented gifts from VANTA Tech."
           }
         }
       },
@@ -99,11 +102,20 @@
         "stack_3"
       ],
       "settings": {
-        "heading": "Shop the Range",
-        "subheading": "",
-        "background_color": "#0066FF",
-        "text_color": "#FFFFFF",
-        "accent_color": "#FFFFFF"
+        "title": "Shop the Range",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "View All",
+        "button_link": "shopify://collections/all",
+        "color_scheme": "scheme-4",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "forge_features": {
