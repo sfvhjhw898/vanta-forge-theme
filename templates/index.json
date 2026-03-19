@@ -27,7 +27,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "technology · innovation · premium tech — made for Tech-forward professionals aged 25-45.",
+            "text": "technical · bold · modern — made for Tech-forward professionals aged 25-45 who demand.",
             "text_style": "subtitle"
           }
         },
@@ -55,7 +55,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Technology  ·  Innovation  ·  Premium tech  ·  Sleek</strong></p>"
+            "text": "<p><strong>Technical  ·  Bold  ·  Modern</strong></p>"
           }
         }
       },
@@ -124,22 +124,22 @@
         "col_1": {
           "type": "column",
           "settings": {
-            "title": "Technology",
-            "text": "VANTA Tech starts with technology as the foundation for everything we do."
+            "title": "Technical",
+            "text": "VANTA Tech starts with technical as the foundation for everything we do."
           }
         },
         "col_2": {
           "type": "column",
           "settings": {
-            "title": "Innovation",
-            "text": "Every consumer product is built with innovation at the centre."
+            "title": "Bold",
+            "text": "Every consumer product is built with bold at the centre."
           }
         },
         "col_3": {
           "type": "column",
           "settings": {
-            "title": "Premium tech",
-            "text": "premium tech matters. We don't ship anything we wouldn't keep for ourselves."
+            "title": "Modern",
+            "text": "modern matters. We don't ship anything we wouldn't keep for ourselves."
           }
         }
       },
@@ -170,7 +170,7 @@
       "settings": {
         "title": "Featured Products",
         "heading_size": "h2",
-        "description": "<p>Our best-selling consumer — made with technology.</p>",
+        "description": "<p>Our best-selling consumer — made with technical.</p>",
         "show_description": true,
         "description_style": "subtitle",
         "collection": "all",
@@ -206,7 +206,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>VANTA Tech was built on a simple idea: technology and innovation shouldn't be mutually exclusive. Read about how we got here.</p>",
+            "text": "<p>VANTA Tech was built on a simple idea: technical and bold shouldn't be mutually exclusive. Read about how we got here.</p>",
             "text_style": "body"
           }
         },
@@ -237,6 +237,90 @@
         "mobile_content_alignment": "left",
         "padding_top": 64,
         "padding_bottom": 64
+      }
+    },
+    "editorial_story_2": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Less Friction. More Flow.",
+            "heading_size": "h2"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Modern design doesn't happen by accident. Every decision at VANTA Tech starts with the question: does this make it better?</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "scheme-4",
+        "section_color_scheme": "scheme-4",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "brand_values_cols": {
+      "type": "multicolumn",
+      "blocks": {
+        "val_1": {
+          "type": "column",
+          "settings": {
+            "title": "Technical",
+            "text": "We don't cut corners. Technical is the baseline, not the exception."
+          }
+        },
+        "val_2": {
+          "type": "column",
+          "settings": {
+            "title": "Bold",
+            "text": "Every piece reflects the attention that VANTA Tech puts into its work."
+          }
+        },
+        "val_3": {
+          "type": "column",
+          "settings": {
+            "title": "Modern",
+            "text": "Purpose-led from the first sketch. Nothing ships without reason."
+          }
+        }
+      },
+      "block_order": [
+        "val_1",
+        "val_2",
+        "val_3"
+      ],
+      "settings": {
+        "title": "What VANTA Tech Stands For",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
     "social_proof": {
@@ -305,6 +389,8 @@
     "forge_features",
     "featured_collection",
     "brand_story",
+    "editorial_story_2",
+    "brand_values_cols",
     "social_proof",
     "newsletter"
   ]
