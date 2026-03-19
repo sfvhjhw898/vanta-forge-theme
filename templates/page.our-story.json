@@ -13,7 +13,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>VANTA Tech is a consumer technology brand with a technical bold modern dark aesthetic.</p>",
+            "text": "<p>Consumer technology engineered without compromise.</p>",
             "text_style": "body"
           }
         }
@@ -43,21 +43,21 @@
         "col_1": {
           "type": "column",
           "settings": {
-            "title": "technology",
-            "text": "We put technology first in every decision we make."
+            "title": "technical",
+            "text": "We put technical first in every decision we make."
           }
         },
         "col_2": {
           "type": "column",
           "settings": {
-            "title": "innovation",
-            "text": "innovation is not a buzzword for us — it's how we work."
+            "title": "bold",
+            "text": "bold is not a buzzword for us — it's how we work."
           }
         },
         "col_3": {
           "type": "column",
           "settings": {
-            "title": "premium tech",
+            "title": "modern",
             "text": "We are transparent about how we make things and who we make them for."
           }
         }
@@ -86,7 +86,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "\"Premium consumer technology with a technical design philosophy.\"",
+            "heading": "\"Engineered · Precision · IP68 · 48hr Battery\"",
             "heading_size": "h2"
           }
         }
