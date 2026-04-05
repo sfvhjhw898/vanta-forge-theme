@@ -1,10 +1,10 @@
 {
   "sections": {
     "forge_hero": {
-      "type": "forge-scroll-hero",
+      "type": "main-banner",
       "settings": {
         "heading": "Engineered for the Future.",
-        "subheading": "technical · bold · modern — made for Tech-forward professionals aged 25-45 who demand.",
+        "subheading": "technical · precision · dark — made for Tech-forward professionals aged 25-45 who demand.",
         "scroll_hint": "Scroll to explore",
         "button_label_1": "Shop Now",
         "button_link_1": "shopify://collections/all",
@@ -99,7 +99,7 @@
       "type": "forge-bento",
       "settings": {
         "heading": "The Technology Inside",
-        "subheading": "VANTA Tech — technical, bold, modern.",
+        "subheading": "VANTA Tech — technical, precision, dark.",
         "story_link": "shopify://pages/our-story",
         "padding_top": 72,
         "padding_bottom": 72,

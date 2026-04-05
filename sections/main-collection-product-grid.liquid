@@ -24,9 +24,9 @@
 
 {%- assign forge_reveal_bg        = "rgba(0,102,255, 0.97)" -%}
 {%- assign forge_reveal_text      = "#FFFFFF" -%}
-{%- assign forge_reveal_tile1_main = "technology" -%}
-{%- assign forge_reveal_tile1_sub  = "innovation" -%}
-{%- assign forge_reveal_tile2_main = "premium tech" -%}
+{%- assign forge_reveal_tile1_main = "technical" -%}
+{%- assign forge_reveal_tile1_sub  = "precision" -%}
+{%- assign forge_reveal_tile2_main = "dark" -%}
 {%- assign forge_reveal_tile2_sub  = "with care" -%}
 
 {%- style -%}
@@ -60,31 +60,18 @@
     color: #FFFFFF !important;
   }
 
-  .grid__item {
-    perspective: 1000px;
+  .card--standard {
+    transition: box-shadow 0.3s ease;
   }
-
-  .card-wrapper {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    will-change: transform;
+  .card--standard:hover {
+    box-shadow: 0 0 0 1.5px #050510, 0 0 24px rgba(5, 5, 16, 0.35);
   }
-
-  .card-wrapper::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 60%);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 10;
-    border-radius: inherit;
-    transition: opacity 0.3s ease;
+  .card--standard img {
+    filter: saturate(0);
+    transition: filter 0.3s ease;
   }
-
-  .card-wrapper.is-tilting::before {
-    opacity: 1;
+  .card--standard:hover img {
+    filter: saturate(1);
   }
 {%- endstyle -%}
 
@@ -198,12 +185,12 @@
             <ul
               id="product-grid"
               data-id="{{ section.id }}"
-              data-reveal="stagger"
               class="
                 grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
                 grid--{{ section.settings.columns_desktop }}-col-desktop
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
+              data-reveal="stagger"
             >
               {% assign skip_card_product_styles = false %}
               {%- for product in collection.products -%}
@@ -247,64 +234,6 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
-
-<script>
-(function() {
-  const cards = document.querySelectorAll('.grid__item .card-wrapper');
-  
-  cards.forEach(card => {
-    let rafId = null;
-    
-    function handleMouseMove(e) {
-      if (rafId) cancelAnimationFrame(rafId);
-      
-      rafId = requestAnimationFrame(() => {
-        const rect = card.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        const dx = e.clientX - centerX;
-        const dy = e.clientY - centerY;
-        
-        const rotateY = (dx / rect.width) * 12;
-        const rotateX = (dy / rect.height) * -12;
-        
-        const glowX = ((e.clientX - rect.left) / rect.width) * 100;
-        const glowY = ((e.clientY - rect.top) / rect.height) * 100;
-        
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        card.classList.add('is-tilting');
-        
-        const before = card.querySelector('::before');
-        if (card.style.setProperty) {
-          card.style.setProperty('--glow-x', glowX + '%');
-          card.style.setProperty('--glow-y', glowY + '%');
-        }
-        
-        const beforeEl = window.getComputedStyle(card, '::before');
-        if (beforeEl) {
-          card.style.setProperty('--glow-position', `${glowX}% ${glowY}%`);
-        }
-      });
-    }
-    
-    function handleMouseLeave() {
-      if (rafId) cancelAnimationFrame(rafId);
-      
-      card.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      card.classList.remove('is-tilting');
-      
-      setTimeout(() => {
-        card.style.transition = '';
-      }, 500);
-    }
-    
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
-  });
-})();
-</script>
 
 {% schema %}
 {

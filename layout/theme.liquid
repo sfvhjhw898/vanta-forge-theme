@@ -306,7 +306,7 @@
   {{ 'forge-brand-base.css' | asset_url | stylesheet_tag }}
   {{ 'vanta-tech-brand.css' | asset_url | stylesheet_tag }}
 
-  <!-- FORGE Generated Theme v2.0 | VANTA Tech | 2026-03-21 -->
+  <!-- FORGE Generated Theme v2.0 | VANTA Tech | 2026-04-05 -->
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -386,5 +386,8 @@
   
   <!-- FORGE: Scroll Reveal -->
   <script src="{{ 'forge-scroll-reveal.js' | asset_url }}" defer></script>
+
+  <!-- FORGE: Micro-Interactions (GSAP) -->
+  <script src="{{ 'forge-interactions.js' | asset_url }}" defer></script>
 </body>
 </html>
