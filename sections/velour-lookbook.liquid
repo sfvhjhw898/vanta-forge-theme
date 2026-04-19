@@ -1,0 +1,83 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+  .vlr-lb {
+    --vlr-black: #0A0A0A; --vlr-gold: #C9A84C; --vlr-ivory: #FAF6F0; --vlr-mid: #7A7269;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background: var(--vlr-ivory); font-family: 'Inter', sans-serif; overflow: hidden;
+  }
+  .vlr-lb__header { max-width: 1200px; margin: 0 auto 48px; padding: 0 48px; }
+  .vlr-lb__eyebrow { display: block; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--vlr-gold); margin: 0 0 16px; }
+  .vlr-lb__heading { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 300; font-size: clamp(28px, 4vw, 52px); color: var(--vlr-black); margin: 0; letter-spacing: -.02em; }
+  .vlr-lb__track-wrap { overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; cursor: grab; padding: 0 48px; }
+  .vlr-lb__track-wrap::-webkit-scrollbar { display: none; }
+  .vlr-lb__track-wrap.dragging { cursor: grabbing; }
+  .vlr-lb__track { display: flex; gap: 16px; width: max-content; padding-bottom: 8px; }
+  .vlr-lb__card { position: relative; width: 300px; flex-shrink: 0; scroll-snap-align: start; overflow: hidden; }
+  .vlr-lb__img-wrap { aspect-ratio: 4/5; overflow: hidden; background: linear-gradient(135deg,#1a1510,#2a2015); }
+  .vlr-lb__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms ease; }
+  .vlr-lb__card:hover .vlr-lb__img { transform: scale(1.05); }
+  .vlr-lb__placeholder { width: 100%; height: 100%; background: linear-gradient(135deg,#1a1510,#2a2015); display: flex; align-items: center; justify-content: center; }
+  .vlr-lb__caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 24px 24px; background: linear-gradient(to top, rgba(10,10,10,0.9), transparent); }
+  .vlr-lb__label { display: block; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--vlr-gold); margin: 0 0 8px; }
+  .vlr-lb__title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; font-weight: 300; color: var(--vlr-ivory); margin: 0 0 12px; line-height: 1.2; }
+  .vlr-lb__link { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,246,240,0.6); text-decoration: none; transition: color 0.3s ease; }
+  .vlr-lb__link:hover { color: var(--vlr-gold); }
+  @media (max-width: 768px) { .vlr-lb__header, .vlr-lb__track-wrap { padding: 0 20px; } .vlr-lb__card { width: 260px; } }
+  @media (prefers-reduced-motion: reduce) { .vlr-lb__img { transition: none; } }
+</style>
+
+<section class="vlr-lb">
+  <div class="vlr-lb__header">
+    {%- if section.settings.eyebrow != blank -%}<span class="vlr-lb__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2 class="vlr-lb__heading">{{ section.settings.heading }}</h2>{%- endif -%}
+  </div>
+  <div class="vlr-lb__track-wrap" id="vlr-lb-{{ section.id }}">
+    <div class="vlr-lb__track">
+      {%- for block in section.blocks -%}
+        <div class="vlr-lb__card" {{ block.shopify_attributes }}>
+          <div class="vlr-lb__img-wrap">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.image.alt | default: block.settings.title | escape }}" loading="lazy" width="300" height="375" class="vlr-lb__img">
+            {%- else -%}
+              <div class="vlr-lb__placeholder" aria-hidden="true">{{ 'image' | placeholder_svg_tag: 'vlr-lb__svg' }}</div>
+            {%- endif -%}
+          </div>
+          <div class="vlr-lb__caption">
+            {%- if block.settings.label != blank -%}<span class="vlr-lb__label">{{ block.settings.label }}</span>{%- endif -%}
+            {%- if block.settings.title != blank -%}<p class="vlr-lb__title">{{ block.settings.title }}</p>{%- endif -%}
+            {%- if block.settings.url != blank -%}<a href="{{ block.settings.url }}" class="vlr-lb__link">View pieces &rarr;</a>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){var w=document.getElementById('vlr-lb-{{ section.id }}');if(!w)return;var d=false,sx,sl;w.addEventListener('mousedown',function(e){d=true;w.classList.add('dragging');sx=e.pageX-w.offsetLeft;sl=w.scrollLeft;});document.addEventListener('mouseup',function(){d=false;w.classList.remove('dragging');});w.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();w.scrollLeft=sl-(e.pageX-w.offsetLeft-sx)*1.2;});})();
+</script>
+
+{% schema %}
+{
+  "name": "VELOUR Lookbook",
+  "tag": "section",
+  "class": "vlr-section-lookbook",
+  "settings": [
+    { "type": "text",  "id": "eyebrow", "label": "Eyebrow", "default": "The Lookbook" },
+    { "type": "text",  "id": "heading", "label": "Heading", "default": "Season Highlights" },
+    { "type": "range", "id": "padding_top",    "label": "Padding top",    "min": 0, "max": 160, "step": 8, "default": 80 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 8, "default": 80 }
+  ],
+  "blocks": [{ "type": "look", "name": "Look", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "label", "label": "Label", "default": "SS26" },
+    { "type": "text", "id": "title", "label": "Title", "default": "The Linen Edit" },
+    { "type": "url",  "id": "url",   "label": "Link URL" }
+  ]}],
+  "presets": [{ "name": "VELOUR Lookbook", "blocks": [
+    { "type": "look", "settings": { "label": "SS26",       "title": "The Linen Edit" } },
+    { "type": "look", "settings": { "label": "Collection", "title": "Evening Wear" } },
+    { "type": "look", "settings": { "label": "Casual",     "title": "Weekend Pieces" } }
+  ]}]
+}
+{% endschema %}

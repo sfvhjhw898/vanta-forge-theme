@@ -15,14 +15,13 @@
   --vanta-tech-border:        rgba(255,255,255,0.08);
   --vanta-tech-glass:         rgba(5,5,16,0.72);
   --vanta-tech-glass-border:  rgba(255,255,255,0.12);
-  --vanta-tech-glass-shadow:  0 8px 32px rgba(0,0,0,0.24);
+  --vanta-tech-glass-shadow:  0 8px 32px rgba(0,0,0,0.4);
   --forge-font-heading:       'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
   --forge-font-body:          'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
   --vanta-tech-surface:       #0D0D1F;
   --vanta-tech-surface-rgb:   13,13,31;
-  --vanta-tech-highlight:     #1A1A2E;
-  --vanta-tech-muted:         rgba(255,255,255,0.45);
-  --vanta-tech-divider:       rgba(255,255,255,0.06);
+  --vanta-tech-glow:          rgba(0,102,255,0.32);
+  --vanta-tech-glow-bright:   rgba(0,212,255,0.18);
 }
 
 /* 2. Typography Override — ALL Dawn heading selectors */
@@ -44,30 +43,30 @@ h1, h2, h3, h4, h5, h6,
 .article__title {
   font-family: var(--forge-font-heading) !important;
   letter-spacing: -0.02em !important;
-  text-wrap: balance;
   font-weight: 600 !important;
+  text-wrap: balance !important;
 }
 
-h1, .h1,
+h1,
 .banner__heading,
 .hero__heading,
 .product__title h1 {
   font-size: clamp(3.2rem, 6vw + 0.5rem, 7rem) !important;
   font-weight: 300 !important;
   line-height: 1.08 !important;
-  letter-spacing: -0.03em !important;
 }
 
-h2, .h2,
+h2,
 .featured-collection .title,
-.image-with-text__heading,
-.rich-text__heading h2 {
+.collection__title,
+.section-header__heading {
   font-size: clamp(2.4rem, 4vw + 0.5rem, 5rem) !important;
   font-weight: 600 !important;
   line-height: 1.12 !important;
 }
 
-h3, .h3,
+h3,
+.card__heading,
 .multicolumn-card__title,
 .collection-card__title {
   font-size: clamp(1.4rem, 2.5vw + 0.3rem, 2.4rem) !important;
@@ -76,7 +75,7 @@ h3, .h3,
 }
 
 body,
-.body,
+.body-text,
 p,
 .card__information,
 .product__description,
@@ -84,21 +83,12 @@ p,
   font-family: var(--forge-font-body) !important;
   font-size: clamp(0.875rem, 1vw + 0.25rem, 1.125rem) !important;
   line-height: 1.65 !important;
-  letter-spacing: -0.01em !important;
-}
-
-.display-heading,
-.hero__heading--large {
-  font-size: clamp(4rem, 8vw + 1rem, 9rem) !important;
-  font-weight: 200 !important;
-  line-height: 1.02 !important;
-  letter-spacing: -0.04em !important;
+  letter-spacing: -0.005em !important;
 }
 
 /* 3. Glassmorphic Sticky Nav */
 .header-wrapper {
   transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  border-bottom: 1px solid transparent;
 }
 
 .shopify-section-header-sticky .header-wrapper {
@@ -106,11 +96,12 @@ p,
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   background: rgba(5, 5, 16, 0.85) !important;
   border-bottom: 1px solid rgba(0, 102, 255, 0.3) !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .shopify-section-header-sticky .header {
-  background: transparent !important;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* 4. Pill Navigation — FULL CSS Grid Override */
@@ -128,11 +119,13 @@ p,
     display: flex !important;
     align-items: center !important;
     gap: 1rem !important;
+    margin: 0 !important;
   }
 
   .header__inline-menu {
     grid-column: 2 !important;
     justify-self: center !important;
+    margin: 0 !important;
   }
 
   .header__heading-link {
@@ -146,12 +139,10 @@ p,
   background: rgba(0, 102, 255, 0.93) !important;
   border-radius: 100px !important;
   padding: 0.3rem 0.5rem !important;
-  backdrop-filter: blur(20px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
-  box-shadow: 0 2px 28px rgba(0, 102, 255, 0.3), 
-              inset 0 1px 0 rgba(255, 255, 255, 0.12),
-              0 0 0 1px rgba(0, 102, 255, 0.4) !important;
-  border: none !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .header__menu-item {
@@ -164,22 +155,13 @@ p,
   letter-spacing: -0.01em !important;
 }
 
-.header__menu-item:hover,
-.header__menu-item:focus-visible {
+.header__menu-item:hover {
   background: rgba(255, 255, 255, 0.10) !important;
-  transform: translateY(-1px);
+  transform: translateY(-1px) !important;
 }
 
-.header__menu-item.header__active-menu-item {
+.header__menu-item.active {
   background: rgba(255, 255, 255, 0.15) !important;
-  font-weight: 600 !important;
-}
-
-.header__inline-menu .list-menu {
-  display: flex !important;
-  gap: 0.2rem !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 /* 5. Announcement Bar */
@@ -200,17 +182,6 @@ p,
   text-transform: uppercase !important;
   letter-spacing: 0.12em !important;
   color: #FFFFFF !important;
-}
-
-.announcement-bar__link {
-  color: #FFFFFF !important;
-  text-decoration: underline !important;
-  text-underline-offset: 3px !important;
-  transition: opacity 0.2s ease !important;
-}
-
-.announcement-bar__link:hover {
-  opacity: 0.8 !important;
 }
 
 /* 6. @keyframes — ALL 8 animation definitions */
@@ -298,8 +269,7 @@ p,
     clip-path: inset(0 0 110% 0);
     opacity: 0;
     will-change: clip-path, opacity;
-    transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.5s ease;
+    transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
   }
 
   [data-reveal="masked"].is-visible {
@@ -311,8 +281,7 @@ p,
     transform: translateY(40px);
     opacity: 0;
     will-change: transform, opacity;
-    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.6s ease;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
   }
 
   [data-reveal="slide-up"].is-visible {
@@ -328,8 +297,7 @@ p,
     transform: scale(1.08);
     opacity: 0;
     will-change: transform, opacity;
-    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.8s ease;
+    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
   }
 
   [data-reveal="zoom"].is-visible img {
@@ -341,8 +309,7 @@ p,
     opacity: 0;
     transform: translateY(30px);
     will-change: opacity, transform;
-    transition: opacity 0.6s ease,
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   [data-reveal="stagger"].is-visible > *:nth-child(1) {
@@ -443,13 +410,11 @@ html.forge-intro-init.forge-intro-play .section-header {
 }
 
 html.forge-intro-init.forge-intro-play .fsh__media-wrap {
-  transition: opacity 0.55s ease 0.5s,
-              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+  transition: opacity 0.55s ease 0.5s, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
 }
 
 html.forge-intro-init.forge-intro-play .fsh__titles {
-  transition: opacity 0.5s ease 0.9s,
-              filter 0.5s ease 0.9s;
+  transition: opacity 0.5s ease 0.9s, filter 0.5s ease 0.9s;
 }
 
 html.forge-intro-init.forge-intro-play .fsh__hint {
@@ -474,54 +439,54 @@ html.forge-intro-play .fsh__hint {
   opacity: 1;
 }
 
-/* 9. Product Cards — VANTA TECH BLUE GLOW STYLE */
+/* 9. Product Cards */
 .card-wrapper {
-  background: #0D0D1F !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: var(--vanta-tech-surface) !important;
+  border: 1px solid var(--vanta-tech-border) !important;
   border-radius: 16px !important;
   overflow: hidden !important;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 .card-wrapper:hover {
-  box-shadow: 0 0 0 1.5px #0066FF,
-              0 0 28px rgba(0, 102, 255, 0.32),
-              0 0 56px rgba(0, 212, 255, 0.08) !important;
-  border-color: #0066FF !important;
-  transform: translateY(-4px);
+  box-shadow: 0 0 0 1.5px var(--vanta-tech-primary), 0 0 28px var(--vanta-tech-glow), 0 0 56px var(--vanta-tech-glow-bright) !important;
+  border-color: var(--vanta-tech-primary) !important;
+  transform: translateY(-6px) !important;
 }
 
-.card {
-  background: transparent !important;
-  border: none !important;
+.card.card--standard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--vanta-tech-surface);
 }
 
 .card__media {
-  background: #0D0D1F !important;
+  background: var(--vanta-tech-surface) !important;
   border-radius: 14px 14px 0 0 !important;
   overflow: hidden !important;
 }
 
 .card--media .media img {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s ease;
 }
 
 .card-wrapper:hover .card--media .media img {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
 .card__heading,
 .card__heading a {
-  font-family: 'Geist', 'DM Sans', sans-serif !important;
+  font-family: var(--forge-font-heading) !important;
   font-weight: 600 !important;
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   font-size: 1.3rem !important;
   letter-spacing: -0.01em !important;
 }
 
 .card__information {
   padding: 16px !important;
-  background: #0D0D1F !important;
+  background: var(--vanta-tech-surface) !important;
 }
 
 .price {
@@ -530,70 +495,59 @@ html.forge-intro-play .fsh__hint {
   font-weight: 500 !important;
 }
 
-.price__regular {
-  color: rgba(255, 255, 255, 0.55) !important;
-}
-
-.price__sale {
-  color: #0066FF !important;
-}
-
 .card__badge {
-  background: #0066FF !important;
+  background: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
-  border-radius: 8px !important;
-  padding: 0.4rem 0.8rem !important;
+  border-radius: 100px !important;
+  padding: 0.4rem 0.9rem !important;
   font-size: 0.75rem !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
 }
 
-/* 10. Product Card Reveal Overlay — DISABLED FOR VANTA TECH */
-.forge-reveal {
-  display: none !important;
-}
+/* 10. Product Card Reveal Overlay — DISABLED FOR VANTA */
+/* VANTA uses blue glow on hover instead of reveal overlay */
 
 /* 11. Collection Cards */
 .collection-card {
   border-radius: 2rem !important;
   overflow: hidden !important;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease !important;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
   background: var(--vanta-tech-surface) !important;
-  border: 1px solid var(--vanta-tech-divider) !important;
+  border: 1px solid var(--vanta-tech-border) !important;
 }
 
 .collection-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 0 1px #0066FF,
-              0 24px 64px rgba(0, 102, 255, 0.2);
+  transform: translateY(-6px) !important;
+  box-shadow: 0 0 0 1.5px var(--vanta-tech-primary), 0 0 28px var(--vanta-tech-glow) !important;
+  border-color: var(--vanta-tech-primary) !important;
 }
 
 .collection-card__image-wrapper {
-  border-radius: 2rem 2rem 0 0 !important;
-  overflow: hidden !important;
-}
-
-.collection-card__image {
-  transition: transform 0.6s ease;
+  overflow: hidden;
 }
 
 .collection-card:hover .collection-card__image {
   transform: scale(1.06);
 }
 
+.collection-card__image {
+  transition: transform 0.6s ease;
+}
+
 .collection-card__title {
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   padding: 1.5rem !important;
 }
 
 /* 12. Cart Drawer */
-.drawer {
+.cart-drawer {
   background: rgba(5, 5, 16, 0.95) !important;
-  backdrop-filter: blur(24px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   border-left: 1px solid rgba(0, 102, 255, 0.2) !important;
+  box-shadow: -8px 0 48px rgba(0, 0, 0, 0.6) !important;
 }
 
 .drawer__inner {
@@ -601,69 +555,78 @@ html.forge-intro-play .fsh__hint {
 }
 
 .drawer__header {
-  border-bottom: 1px solid var(--vanta-tech-divider) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 2rem !important;
 }
 
 .drawer__heading {
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   font-family: var(--forge-font-heading) !important;
   font-size: 1.8rem !important;
   font-weight: 600 !important;
 }
 
 .cart-item {
-  border-bottom: 1px solid var(--vanta-tech-divider) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
   padding: 1.5rem 2rem !important;
 }
 
 .cart-item__name {
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   font-weight: 600 !important;
 }
 
 .cart-item__price-wrapper {
-  color: var(--vanta-tech-muted) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
 }
 
 .cart-drawer__footer {
   background: rgba(0, 0, 0, 0.3) !important;
-  border-top: 1px solid var(--vanta-tech-divider) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 2rem !important;
 }
 
-.totals {
-  color: #FFFFFF !important;
+/* 13. Variant Selectors */
+.product-form__input {
+  border-radius: 100px !important;
+  border: 1.5px solid var(--vanta-tech-border) !important;
+  background: var(--vanta-tech-surface) !important;
+  color: var(--vanta-tech-text) !important;
+  padding: 0.7rem 1.4rem !important;
+  font-family: var(--forge-font-body) !important;
+  font-weight: 500 !important;
+  transition: border-color 0.2s ease, background 0.2s ease !important;
 }
 
-/* 13. Variant Selectors */
-.product-form__input input[type="radio"] + label {
-  border: 1.5px solid var(--vanta-tech-divider) !important;
-  border-radius: 100px !important;
-  padding: 0.65rem 1.3rem !important;
-  background: transparent !important;
-  color: var(--vanta-tech-muted) !important;
-  transition: all 0.2s ease !important;
-  font-weight: 500 !important;
-  cursor: pointer;
+.product-form__input:hover {
+  border-color: rgba(0, 102, 255, 0.4) !important;
 }
 
 .product-form__input input[type="radio"]:checked + label {
   background: var(--vanta-tech-primary) !important;
-  border-color: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+  border-color: var(--vanta-tech-primary) !important;
 }
 
-.product-form__input input[type="radio"] + label:hover {
-  border-color: var(--vanta-tech-primary) !important;
+fieldset.product-form__input .form__label {
+  border-radius: 100px !important;
+  border: 1.5px solid var(--vanta-tech-border) !important;
+  background: var(--vanta-tech-surface) !important;
+  color: var(--vanta-tech-text) !important;
+  padding: 0.7rem 1.4rem !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+fieldset.product-form__input .form__label:hover {
+  border-color: rgba(0, 102, 255, 0.4) !important;
   background: rgba(0, 102, 255, 0.08) !important;
 }
 
-fieldset.product-form__input {
-  display: flex !important;
-  gap: 0.6rem !important;
-  flex-wrap: wrap !important;
+fieldset.product-form__input input:checked + .form__label {
+  background: var(--vanta-tech-primary) !important;
+  color: #FFFFFF !important;
+  border-color: var(--vanta-tech-primary) !important;
 }
 
 /* 14. Filter Chips */
@@ -671,39 +634,39 @@ fieldset.product-form__input {
   display: flex !important;
   gap: 0.8rem !important;
   flex-wrap: wrap !important;
-  padding: 1.5rem 0 !important;
 }
 
 .facet-checkbox {
-  border: 1.5px solid var(--vanta-tech-divider) !important;
   border-radius: 100px !important;
+  border: 1.5px solid var(--vanta-tech-border) !important;
+  background: var(--vanta-tech-surface) !important;
+  color: var(--vanta-tech-text) !important;
   padding: 0.6rem 1.2rem !important;
-  background: transparent !important;
-  color: var(--vanta-tech-muted) !important;
-  transition: all 0.2s ease !important;
   font-size: 0.95rem !important;
   font-weight: 500 !important;
-  cursor: pointer;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.facet-checkbox:hover {
+  border-color: rgba(0, 102, 255, 0.4) !important;
+  background: rgba(0, 102, 255, 0.08) !important;
 }
 
 .facet-checkbox input:checked + label,
 .facet-checkbox.active {
   background: var(--vanta-tech-primary) !important;
-  border-color: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
-}
-
-.facet-checkbox:hover {
   border-color: var(--vanta-tech-primary) !important;
-  background: rgba(0, 102, 255, 0.08) !important;
 }
 
 .active-facets__button {
-  background: rgba(0, 102, 255, 0.15) !important;
-  border: 1px solid var(--vanta-tech-primary) !important;
   border-radius: 100px !important;
+  background: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
-  padding: 0.5rem 1rem !important;
+  border: none !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 500 !important;
 }
 
 /* 15. Marquee Status Strip */
@@ -717,12 +680,7 @@ fieldset.product-form__input {
   position: relative;
 }
 
-.forge-marquee__inner {
-  display: flex;
-  width: 100%;
-}
-
-.forge-marquee-track {
+.forge-marquee__track {
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -730,7 +688,7 @@ fieldset.product-form__input {
   will-change: transform;
 }
 
-.forge-marquee-track:hover {
+.forge-marquee:hover .forge-marquee__track {
   animation-play-state: paused;
 }
 
@@ -741,20 +699,18 @@ fieldset.product-form__input {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   white-space: nowrap;
-  color: #FFFFFF;
   display: flex;
   align-items: center;
   gap: 3rem;
 }
 
-.forge-marquee__item::after {
-  content: '·';
-  font-size: 16px;
+.forge-marquee__separator {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
   opacity: 0.5;
-}
-
-.forge-marquee__item:last-child::after {
-  display: none;
 }
 
 /* 16. Section Spacing */
@@ -782,42 +738,54 @@ fieldset.product-form__input {
   }
 }
 
-.section--tight {
-  padding-top: 40px !important;
-  padding-bottom: 40px !important;
+.section--dark {
+  background: var(--vanta-tech-secondary) !important;
+  color: var(--vanta-tech-text) !important;
 }
 
-.section--loose {
-  padding-top: 140px !important;
-  padding-bottom: 140px !important;
+.section--primary {
+  background: var(--vanta-tech-primary) !important;
+  color: #FFFFFF !important;
+}
+
+.section--warm {
+  background: var(--vanta-tech-warm) !important;
+  color: var(--vanta-tech-text) !important;
+}
+
+.section--light {
+  background: #FFFFFF !important;
+  color: #000000 !important;
 }
 
 /* 17. Bento Grid — FULL IMPLEMENTATION */
 .forge-bento {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
+  margin: 0;
 }
 
 .forge-bento__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
-  background: var(--vanta-tech-divider);
-  border-radius: 24px;
-  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 989px) {
+  .forge-bento__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .forge-bento__cell {
   padding: 3rem;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 280px;
+  justify-content: flex-end;
 }
 
 .forge-bento__cell:hover {
@@ -829,8 +797,20 @@ fieldset.product-form__input {
   grid-row: 1 / 4;
 }
 
+@media (max-width: 989px) {
+  .forge-bento__cell--tall {
+    grid-row: auto;
+  }
+}
+
 .forge-bento__cell--wide {
   grid-column: 2 / 4;
+}
+
+@media (max-width: 989px) {
+  .forge-bento__cell--wide {
+    grid-column: auto;
+  }
 }
 
 .forge-bento__cell--dark {
@@ -839,189 +819,179 @@ fieldset.product-form__input {
 }
 
 .forge-bento__cell--light {
-  background: #FFFFFF;
-  color: var(--vanta-tech-secondary);
-}
-
-.forge-bento__cell--surface {
-  background: var(--vanta-tech-surface);
-  color: #FFFFFF;
+  background: var(--vanta-tech-secondary);
+  color: var(--vanta-tech-text);
 }
 
 .forge-bento__cell--warm {
   background: var(--vanta-tech-warm);
-  color: #FFFFFF;
+  color: var(--vanta-tech-text);
+}
+
+.forge-bento__cell--pale {
+  background: rgba(0, 102, 255, 0.08);
+  color: var(--vanta-tech-text);
 }
 
 .forge-bento__cell--stat {
   background: var(--vanta-tech-surface);
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
   background-size: 20px 20px;
-  color: #FFFFFF;
+  color: var(--vanta-tech-text);
+}
+
+.forge-bento__cell-content {
+  position: relative;
+  z-index: 1;
 }
 
 .forge-bento__cell-title {
-  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-family: var(--forge-font-heading);
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
   font-weight: 600;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
 .forge-bento__cell-text {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0.85;
 }
 
 .forge-bento__cell-stat {
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-family: var(--forge-font-heading);
+  font-size: clamp(3.5rem, 6vw, 6rem);
   font-weight: 300;
   line-height: 1;
   margin-bottom: 0.5rem;
 }
 
 .forge-bento__cell-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  opacity: 0.6;
-}
-
-@media (max-width: 990px) {
-  .forge-bento__grid {
-    grid-template-columns: 1fr;
-    gap: 1px;
-  }
-
-  .forge-bento__cell--tall,
-  .forge-bento__cell--wide {
-    grid-column: auto;
-    grid-row: auto;
-  }
+  opacity: 0.65;
 }
 
 /* 18. Editorial Our Story */
 .forge-story {
+  position: relative;
+}
+
+.forge-story__section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.forge-story__section--dark {
+  background: var(--vanta-tech-secondary);
+  color: var(--vanta-tech-text);
+}
+
+.forge-story__section--light {
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.forge-story__heading {
+  font-size: clamp(3rem, 6vw, 7rem);
+  font-weight: 300;
+  line-height: 1.08;
+  margin-bottom: 2rem;
+}
+
+.forge-story__heading--outline {
+  -webkit-text-stroke: 1.5px currentColor;
+  -webkit-text-fill-color: transparent;
+  text-stroke: 1.5px currentColor;
+  text-fill-color: transparent;
+}
+
+.forge-story__number {
+  font-size: clamp(12rem, 20vw, 24rem);
+  font-weight: 300;
+  line-height: 0.9;
+  -webkit-text-stroke: 2px currentColor;
+  -webkit-text-fill-color: transparent;
+  text-stroke: 2px currentColor;
+  text-fill-color: transparent;
+  opacity: 0.15;
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.forge-story__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 4rem;
   align-items: start;
-  padding: 120px 0;
+}
+
+@media (max-width: 989px) {
+  .forge-story__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 .forge-story__portrait {
   position: sticky;
   top: 120px;
-  border-radius: 24px;
-  overflow: hidden;
 }
 
 .forge-story__portrait img {
   width: 100%;
   height: auto;
-  display: block;
+  border-radius: 1rem;
 }
 
 .forge-story__content {
-  padding: 2rem 0;
-}
-
-.forge-story__number {
-  font-size: clamp(12rem, 20vw, 20rem);
-  font-weight: 200;
-  line-height: 0.85;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--vanta-tech-primary);
-  text-stroke: 1.5px var(--vanta-tech-primary);
-  margin-bottom: 2rem;
-  display: block;
-}
-
-.forge-story__heading {
-  font-size: clamp(2.4rem, 4vw, 4.5rem);
-  font-weight: 600;
-  margin-bottom: 2rem;
-  line-height: 1.15;
-}
-
-.forge-story__heading--outline {
-  color: transparent;
-  -webkit-text-stroke: 1px #FFFFFF;
-  text-stroke: 1px #FFFFFF;
+  padding-top: 2rem;
 }
 
 .forge-story__text {
-  font-size: 1.15rem;
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
   line-height: 1.75;
-  color: var(--vanta-tech-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.forge-story__text:last-child {
-  margin-bottom: 0;
-}
-
-.forge-story--dark {
-  background: var(--vanta-tech-secondary);
-  color: #FFFFFF;
-}
-
-.forge-story--light {
-  background: #FFFFFF;
-  color: var(--vanta-tech-secondary);
-}
-
-@media (max-width: 990px) {
-  .forge-story {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .forge-story__portrait {
-    position: relative;
-    top: 0;
-  }
-}
-
-.forge-image-strip {
+.forge-story__images {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 80px 0;
+  gap: 1.5rem;
+  margin-top: 4rem;
 }
 
-.forge-image-strip__col {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.forge-image-strip__col:nth-child(2) {
-  transform: translateY(60px);
-}
-
-.forge-image-strip__col:nth-child(3) {
-  transform: translateY(120px);
-}
-
-.forge-image-strip__image {
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.forge-image-strip__image img {
+.forge-story__images img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.8rem;
 }
 
-@media (max-width: 990px) {
-  .forge-image-strip {
+.forge-story__images img:nth-child(1) {
+  transform: translateY(0);
+}
+
+.forge-story__images img:nth-child(2) {
+  transform: translateY(3rem);
+}
+
+.forge-story__images img:nth-child(3) {
+  transform: translateY(1.5rem);
+}
+
+@media (max-width: 989px) {
+  .forge-story__images {
     grid-template-columns: 1fr;
   }
 
-  .forge-image-strip__col {
-    transform: none !important;
+  .forge-story__images img {
+    transform: translateY(0) !important;
   }
 }
 
@@ -1029,12 +999,11 @@ fieldset.product-form__input {
 .footer {
   background: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
-  padding: 80px 0 40px !important;
-  border-top: none !important;
+  padding: 4rem 0 2rem !important;
 }
 
 .footer__content-top {
-  padding-bottom: 60px !important;
+  padding-bottom: 3rem !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
@@ -1048,7 +1017,7 @@ fieldset.product-form__input {
   color: #FFFFFF !important;
   font-size: 1.1rem !important;
   font-weight: 600 !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.2rem !important;
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
 }
@@ -1063,7 +1032,6 @@ fieldset.product-form__input {
   color: rgba(255, 255, 255, 0.75) !important;
   text-decoration: none !important;
   transition: color 0.2s ease !important;
-  font-size: 0.95rem !important;
 }
 
 .footer-block__details-content a:hover {
@@ -1071,28 +1039,22 @@ fieldset.product-form__input {
 }
 
 .footer__newsletter {
-  max-width: 500px !important;
+  margin-top: 2rem !important;
 }
 
 .newsletter-form__field-wrapper {
   position: relative !important;
-  display: flex !important;
-  gap: 0.5rem !important;
 }
 
 .field__input {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: transparent !important;
   border: none !important;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 0 !important;
   color: #FFFFFF !important;
   padding: 1rem 0 !important;
-  font-size: 1rem !important;
-  flex: 1 !important;
-}
-
-.field__input::placeholder {
-  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 1.1rem !important;
+  width: 100% !important;
+  transition: border-color 0.2s ease !important;
 }
 
 .field__input:focus {
@@ -1100,23 +1062,29 @@ fieldset.product-form__input {
   outline: none !important;
 }
 
+.field__input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
 .newsletter-form__button {
   background: #FFFFFF !important;
   color: var(--vanta-tech-primary) !important;
   border: none !important;
   border-radius: 100px !important;
-  padding: 0.8rem 2rem !important;
+  padding: 0.9rem 2rem !important;
   font-weight: 600 !important;
+  margin-top: 1rem !important;
   cursor: pointer !important;
   transition: transform 0.2s ease !important;
 }
 
 .newsletter-form__button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px) !important;
 }
 
 .footer__content-bottom {
-  padding-top: 40px !important;
+  padding-top: 2rem !important;
+  margin-top: 2rem !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
@@ -1125,64 +1093,37 @@ fieldset.product-form__input {
 }
 
 .footer__copyright {
-  color: rgba(255, 255, 255, 0.6) !important;
-  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 0.9rem !important;
 }
 
 /* 20. Product Page */
 .product {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 4rem !important;
-  padding: 80px 0 !important;
-}
-
-.product__media-wrapper {
-  position: sticky !important;
-  top: 120px !important;
-  align-self: start !important;
-}
-
-.product__media-list {
-  display: grid !important;
-  gap: 1rem !important;
-}
-
-.product__media-item {
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  background: var(--vanta-tech-surface) !important;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
 }
 
 .product__info-wrapper {
-  padding: 2rem 0 !important;
+  position: sticky !important;
+  top: 120px !important;
+}
+
+@media (max-width: 989px) {
+  .product__info-wrapper {
+    position: static !important;
+  }
 }
 
 .product__title {
-  font-size: clamp(2rem, 4vw, 3.5rem) !important;
-  font-weight: 600 !important;
+  font-size: clamp(2.4rem, 4vw, 4rem) !important;
   margin-bottom: 1rem !important;
-  color: #FFFFFF !important;
-}
-
-.price {
-  font-size: 1.8rem !important;
-  font-weight: 600 !important;
-  margin-bottom: 2rem !important;
-  color: #FFFFFF !important;
 }
 
 .product__description {
-  font-size: 1.05rem !important;
+  font-size: 1.1rem !important;
   line-height: 1.7 !important;
-  color: var(--vanta-tech-muted) !important;
-  margin-bottom: 2.5rem !important;
-}
-
-.product-form {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 1.5rem !important;
+  margin-bottom: 2rem !important;
+  color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .product-form__submit {
@@ -1192,53 +1133,49 @@ fieldset.product-form__input {
   color: #FFFFFF !important;
   border: none !important;
   border-radius: 100px !important;
-  font-size: 1.1rem !important;
+  font-size: 1.2rem !important;
   font-weight: 600 !important;
   cursor: pointer !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  margin-top: 1.5rem !important;
 }
 
 .product-form__submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3) !important;
 }
 
-@media (max-width: 990px) {
-  .product {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-
-  .product__media-wrapper {
-    position: relative !important;
-    top: 0 !important;
-  }
+.product-form__submit:active {
+  transform: translateY(0) !important;
 }
 
 /* 21. Collection Page */
+.collection {
+  padding-top: 4rem !important;
+}
+
 .collection-hero {
-  padding: 120px 0 60px !important;
   text-align: center !important;
+  margin-bottom: 4rem !important;
 }
 
 .collection-hero__title {
-  font-size: clamp(3rem, 6vw, 6rem) !important;
+  font-size: clamp(3.2rem, 6vw, 7rem) !important;
   font-weight: 300 !important;
-  margin-bottom: 1.5rem !important;
-  color: #FFFFFF !important;
+  margin-bottom: 1rem !important;
 }
 
 .collection-hero__description {
   font-size: 1.2rem !important;
-  color: var(--vanta-tech-muted) !important;
-  max-width: 700px !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  max-width: 600px !important;
   margin: 0 auto !important;
 }
 
 .facets-container {
-  padding: 2rem 0 !important;
-  border-bottom: 1px solid var(--vanta-tech-divider) !important;
   margin-bottom: 3rem !important;
+  padding: 1.5rem 0 !important;
+  border-bottom: 1px solid var(--vanta-tech-border) !important;
 }
 
 .product-grid {
@@ -1249,13 +1186,7 @@ fieldset.product-form__input {
 
 @media (min-width: 750px) {
   .product-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-@media (min-width: 990px) {
-  .product-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2.5rem !important;
   }
 }
 
@@ -1263,58 +1194,61 @@ fieldset.product-form__input {
 .button,
 .shopify-payment-button__button,
 button[type="submit"] {
+  border-radius: 100px !important;
+  font-family: var(--forge-font-body) !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.button--primary {
   background: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
   border: none !important;
-  border-radius: 100px !important;
-  padding: 0.9rem 2.2rem !important;
-  font-size: 1.05rem !important;
-  font-weight: 600 !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.5rem !important;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.1rem !important;
 }
 
-.button:hover,
-.shopify-payment-button__button:hover,
-button[type="submit"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
+.button--primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3) !important;
 }
 
 .button--secondary {
   background: transparent !important;
-  color: #FFFFFF !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  color: var(--vanta-tech-text) !important;
+  border: 1.5px solid var(--vanta-tech-border) !important;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.1rem !important;
 }
 
 .button--secondary:hover {
-  border-color: #FFFFFF !important;
-  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--vanta-tech-primary) !important;
+  background: rgba(0, 102, 255, 0.08) !important;
+  transform: translateY(-2px) !important;
 }
 
 .button--tertiary {
   background: transparent !important;
   color: var(--vanta-tech-primary) !important;
-  border: 1.5px solid var(--vanta-tech-primary) !important;
+  border: none !important;
+  text-decoration: underline !important;
+  padding: 0.5rem 1rem !important;
 }
 
 .button--tertiary:hover {
-  background: rgba(0, 102, 255, 0.08) !important;
+  color: rgba(0, 102, 255, 0.8) !important;
 }
 
 /* 23. Mobile Enhancements */
 @media (max-width: 749px) {
   .button,
   .product-form__submit,
-  .newsletter-form__button,
-  a[role="button"] {
+  .shopify-payment-button__button {
     min-height: 44px !important;
-    min-width: 44px !important;
+    padding: 0.8rem 1.8rem !important;
   }
 
   .header__icon {
@@ -1335,20 +1269,16 @@ button[type="submit"]:hover {
     padding-top: 60px !important;
     padding-bottom: 60px !important;
   }
-
-  .forge-bento__cell {
-    padding: 2rem !important;
-  }
 }
 
 /* 24. Glassmorphism Utility */
 .glass-panel {
   background: var(--vanta-tech-glass) !important;
-  backdrop-filter: blur(20px) saturate(150%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   border: 1px solid var(--vanta-tech-glass-border) !important;
   box-shadow: var(--vanta-tech-glass-shadow) !important;
-  border-radius: 16px !important;
+  border-radius: 1rem !important;
 }
 
 .glass-panel--dark {
@@ -1371,47 +1301,23 @@ button[type="submit"]:hover {
 .skip-to-content-link:focus {
   clip: auto !important;
   overflow: visible !important;
-  height: auto !important;
+  position: static !important;
   width: auto !important;
-  z-index: 9999 !important;
+  height: auto !important;
   background: var(--vanta-tech-primary) !important;
   color: #FFFFFF !important;
   padding: 1rem 2rem !important;
-  position: fixed !important;
-  top: 1rem !important;
-  left: 1rem !important;
+  z-index: 10000 !important;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--vanta-tech-primary) !important;
-  outline-offset: 2px !important;
+[aria-hidden="true"] {
+  pointer-events: none !important;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-.visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+button:disabled,
+button[disabled] {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
 }
 
 /* 26. Horizontal Scroll Strip */
@@ -1424,7 +1330,6 @@ textarea:focus-visible {
   padding: 2rem 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
 }
 
 .forge-hscroll::-webkit-scrollbar {
@@ -1436,16 +1341,21 @@ textarea:focus-visible {
   scroll-snap-align: start;
   width: 80vw;
   max-width: 360px;
-  border-radius: 16px;
+  border-radius: 1rem;
   overflow: hidden;
   background: var(--vanta-tech-surface);
-  border: 1px solid var(--vanta-tech-divider);
+  border: 1px solid var(--vanta-tech-border);
+  transition: transform 0.3s ease;
+}
+
+.forge-hscroll__item:hover {
+  transform: scale(1.02);
 }
 
 .forge-hscroll__item img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 240px;
+  object-fit: cover;
 }
 
 .forge-hscroll__content {
@@ -1453,16 +1363,17 @@ textarea:focus-visible {
 }
 
 .forge-hscroll__title {
-  font-size: 1.3rem;
+  font-family: var(--forge-font-heading);
+  font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #FFFFFF;
+  color: var(--vanta-tech-text);
 }
 
 .forge-hscroll__text {
-  font-size: 0.95rem;
-  color: var(--vanta-tech-muted);
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 /* 27. Grain Texture Overlay */
@@ -1471,11 +1382,11 @@ textarea:focus-visible {
 }
 
 .forge-grain::after {
-  content: '';
   position: absolute;
   inset: 0;
+  content: '';
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
   z-index: 1;
   opacity: 0.4;
@@ -1495,9 +1406,16 @@ textarea:focus-visible {
   justify-content: center;
 }
 
+@media (max-width: 989px) {
+  .forge-stats {
+    gap: 3rem;
+    padding: 4rem 0;
+  }
+}
+
 .forge-stat {
   text-align: center;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .forge-stat__number {
@@ -1505,7 +1423,7 @@ textarea:focus-visible {
   font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 300;
   line-height: 1;
-  color: #FFFFFF;
+  color: var(--vanta-tech-text);
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -1514,25 +1432,15 @@ textarea:focus-visible {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--vanta-tech-muted);
+  color: rgba(255, 255, 255, 0.45);
   font-weight: 500;
 }
 
-.forge-stats--outline .forge-stat__number {
-  color: transparent;
-  -webkit-text-stroke: 2px var(--vanta-tech-primary);
-  text-stroke: 2px var(--vanta-tech-primary);
-}
-
-@media (max-width: 749px) {
-  .forge-stats {
-    gap: 2rem;
-    padding: 4rem 0;
-  }
-
-  .forge-stat {
-    min-width: 150px;
-  }
+.forge-stat--outline .forge-stat__number {
+  -webkit-text-stroke: 2px currentColor;
+  -webkit-text-fill-color: transparent;
+  text-stroke: 2px currentColor;
+  text-fill-color: transparent;
 }
 
 /* 29. Image Text Overlap — editorial asymmetric layout */
@@ -1549,7 +1457,17 @@ textarea:focus-visible {
   width: 55%;
   height: 120%;
   object-fit: cover;
-  border-radius: 24px 0 0 24px;
+  border-radius: 1rem 0 0 1rem;
+}
+
+@media (max-width: 989px) {
+  .forge-overlap__img {
+    position: static;
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .forge-overlap__text {
@@ -1559,50 +1477,23 @@ textarea:focus-visible {
   max-width: 100%;
 }
 
-.forge-overlap__heading {
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  font-weight: 600;
-  margin-bottom: 2rem;
-  line-height: 1.1;
-  color: #FFFFFF;
-}
-
-.forge-overlap__body {
-  font-size: 1.15rem;
-  line-height: 1.75;
-  color: var(--vanta-tech-muted);
-  margin-bottom: 2rem;
-}
-
-.forge-overlap__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: var(--vanta-tech-primary);
-  color: #FFFFFF;
-  text-decoration: none;
-  border-radius: 100px;
-  font-weight: 600;
-  transition: transform 0.2s ease;
-}
-
-.forge-overlap__cta:hover {
-  transform: translateY(-2px);
-}
-
-@media (max-width: 990px) {
-  .forge-overlap__img {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    border-radius: 16px;
-    margin-bottom: 2rem;
-  }
-
+@media (max-width: 989px) {
   .forge-overlap__text {
     padding-right: 0;
   }
+}
+
+.forge-overlap__heading {
+  font-size: clamp(2.4rem, 4vw, 5rem);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  line-height: 1.12;
+}
+
+.forge-overlap__body {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* 30. Brand Typography Personality — TECHNICAL */
@@ -1615,230 +1506,327 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--forge-font-heading);
-  font-feature-settings: 'ss01' on, 'ss02' on;
-}
-
-.forge-mono,
-.forge-technical {
-  font-family: 'Geist Mono', 'SF Mono', 'Roboto Mono', monospace;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-}
-
-.forge-label,
-.forge-tag {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: -0.02em;
   font-weight: 600;
-}
-
-.forge-precision {
-  font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: 'tnum' on, 'lnum' on;
-}
-
-code,
-pre,
-.code {
-  font-family: 'Geist Mono', 'SF Mono', monospace;
-  background: rgba(0, 102, 255, 0.08);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
 }
 
 .forge-display {
-  font-size: clamp(5rem, 10vw, 12rem);
-  font-weight: 200;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  font-weight: 300;
+  letter-spacing: -0.03em;
 }
 
-.forge-subheading {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 600;
-  color: var(--vanta-tech-primary);
-  margin-bottom: 1rem;
-}
-
-/* Additional Technical Precision Styles */
-.forge-metric {
-  font-family: 'Geist Mono', monospace;
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: var(--vanta-tech-primary);
-  font-variant-numeric: tabular-nums;
-}
-
-.forge-timestamp {
-  font-family: 'Geist Mono', monospace;
+.forge-label,
+.forge-meta {
+  font-family: 'Geist Mono', 'SF Mono', 'Courier New', monospace;
   font-size: 0.85rem;
-  color: var(--vanta-tech-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.forge-code {
+  font-family: 'Geist Mono', 'SF Mono', monospace;
+  background: rgba(0, 102, 255, 0.08);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--vanta-tech-primary);
+}
+
+.forge-technical-number {
+  font-family: 'Geist Mono', monospace;
+  font-variant-numeric: tabular-nums;
   letter-spacing: 0.05em;
 }
 
-/* Dark Mode Base */
-body {
-  background: var(--vanta-tech-secondary);
-  color: #FFFFFF;
+/* Additional Technical Precision Styles */
+.forge-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.page-width {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.forge-scanline {
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 749px) {
-  .page-width {
-    padding: 0 1.5rem;
+.forge-scanline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 102, 255, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  animation: forge-scanline-move 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes forge-scanline-move {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
 
-/* Section Background Alternation */
-.shopify-section:nth-child(odd) {
-  background: var(--vanta-tech-secondary);
+.forge-terminal {
+  background: #000000;
+  color: #00FF00;
+  font-family: 'Geist Mono', monospace;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-x: auto;
 }
 
-.shopify-section:nth-child(even) {
+.forge-terminal::before {
+  content: '$ ';
+  color: var(--vanta-tech-primary);
+  font-weight: 700;
+}
+
+/* Precision Alignment Utilities */
+.forge-align-optical {
+  margin-left: -0.08em;
+}
+
+.forge-kerning-tight {
+  letter-spacing: -0.04em;
+}
+
+.forge-kerning-loose {
+  letter-spacing: 0.08em;
+}
+
+/* Technical Data Display */
+.forge-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.95rem;
+}
+
+.forge-data-row__label {
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+}
+
+.forge-data-row__value {
+  color: var(--vanta-tech-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hover States for Technical Elements */
+.forge-tech-card {
   background: var(--vanta-tech-surface);
+  border: 1px solid var(--vanta-tech-border);
+  border-radius: 0.8rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.section--primary-bg {
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
-}
-
-.section--light-bg {
-  background: #FFFFFF !important;
-  color: var(--vanta-tech-secondary) !important;
-}
-
-.section--dark-bg {
-  background: var(--vanta-tech-secondary) !important;
-  color: #FFFFFF !important;
-}
-
-/* Utility Classes */
-.text-center {
-  text-align: center !important;
-}
-
-.text-left {
-  text-align: left !important;
-}
-
-.text-right {
-  text-align: right !important;
-}
-
-.mt-0 { margin-top: 0 !important; }
-.mt-1 { margin-top: 0.5rem !important; }
-.mt-2 { margin-top: 1rem !important; }
-.mt-3 { margin-top: 1.5rem !important; }
-.mt-4 { margin-top: 2rem !important; }
-.mt-5 { margin-top: 3rem !important; }
-
-.mb-0 { margin-bottom: 0 !important; }
-.mb-1 { margin-bottom: 0.5rem !important; }
-.mb-2 { margin-bottom: 1rem !important; }
-.mb-3 { margin-bottom: 1.5rem !important; }
-.mb-4 { margin-bottom: 2rem !important; }
-.mb-5 { margin-bottom: 3rem !important; }
-
-.pt-0 { padding-top: 0 !important; }
-.pt-1 { padding-top: 0.5rem !important; }
-.pt-2 { padding-top: 1rem !important; }
-.pt-3 { padding-top: 1.5rem !important; }
-.pt-4 { padding-top: 2rem !important; }
-.pt-5 { padding-top: 3rem !important; }
-
-.pb-0 { padding-bottom: 0 !important; }
-.pb-1 { padding-bottom: 0.5rem !important; }
-.pb-2 { padding-bottom: 1rem !important; }
-.pb-3 { padding-bottom: 1.5rem !important; }
-.pb-4 { padding-bottom: 2rem !important; }
-.pb-5 { padding-bottom: 3rem !important; }
-
-/* Image Optimization */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-img[loading="lazy"] {
+.forge-tech-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.8rem;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--vanta-tech-primary), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-img[loading="lazy"].loaded {
+.forge-tech-card:hover::before {
   opacity: 1;
 }
 
-/* Link Styles */
-a {
+.forge-tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 102, 255, 0.15);
+}
+
+/* Monospace Number Display */
+.forge-metric {
+  font-family: 'Geist Mono', monospace;
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
   color: var(--vanta-tech-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
 }
 
-a:hover {
-  color: #3385FF;
+.forge-metric__unit {
+  font-size: 0.4em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-left: 0.2em;
 }
 
-/* Selection */
-::selection {
+/* Technical Badge */
+.forge-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(0, 102, 255, 0.1);
+  border: 1px solid rgba(0, 102, 255, 0.3);
+  border-radius: 100px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--vanta-tech-primary);
+}
+
+.forge-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
   background: var(--vanta-tech-primary);
-  color: #FFFFFF;
+  animation: forge-pulse 2s ease-in-out infinite;
 }
 
-::-moz-selection {
-  background: var(--vanta-tech-primary);
-  color: #FFFFFF;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--vanta-tech-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--vanta-tech-primary);
-  border-radius: 6px;
-  border: 2px solid var(--vanta-tech-secondary);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #3385FF;
-}
-
-/* Print Styles */
-@media print {
-  .header,
-  .footer,
-  .announcement-bar,
-  .cart-drawer,
-  button,
-  .button {
-    display: none !important;
+@keyframes forge-pulse {
+  0%, 100% {
+    opacity: 1;
   }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  * {
-    box-shadow: none !important;
-    text-shadow: none !important;
+  50% {
+    opacity: 0.3;
   }
 }
+
+/* Status Indicator */
+.forge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.forge-status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00FF00;
+  box-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
+}
+
+.forge-status--offline .forge-status__dot {
+  background: #FF0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+.forge-status--warning .forge-status__dot {
+  background: #FFAA00;
+  box-shadow: 0 0 12px rgba(255, 170, 0, 0.6);
+}
+
+/* Technical Divider */
+.forge-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 102, 255, 0.3) 20%,
+    rgba(0, 102, 255, 0.3) 80%,
+    transparent
+  );
+  margin: 3rem 0;
+  position: relative;
+}
+
+.forge-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--vanta-tech-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 16px rgba(0, 102, 255, 0.6);
+}
+
+/* Precision Typography Scale */
+.forge-text-xs {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.forge-text-sm {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.forge-text-base {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.forge-text-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.forge-text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75;
+}
+
+.forge-text-2xl {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.forge-text-3xl {
+  font-size: 1.875rem;
+  line-height: 1.3;
+}
+
+.forge-text-4xl {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+/* Technical Color Utilities */
+.forge-text-primary {
+  color: var(--vanta-tech-primary) !important;
+}
+
+.forge-text-muted {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.forge-text-subtle {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.forge-bg-surface {
+  background: var(--vanta-tech-surface) !important;

@@ -49,11 +49,13 @@
     letter-spacing: -0.03em !important;
     line-height: 1.0 !important;
   }
+
   .facets__pill, .facets-horizontal .facets__label {
     border-radius: 100px !important;
     border: 1px solid rgba(0,0,0,0.16) !important;
     transition: background 0.18s ease, border-color 0.18s ease !important;
   }
+
   .facets__pill--active, [data-facets-active] .facets__pill {
     background: #0066FF !important;
     border-color: #0066FF !important;
@@ -61,16 +63,19 @@
   }
 
   .card--standard {
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .card--standard:hover {
     box-shadow: 0 0 0 1.5px #050510, 0 0 24px rgba(5, 5, 16, 0.35);
   }
-  .card--standard img {
+
+  .card--standard .card__media img {
     filter: saturate(0);
-    transition: filter 0.3s ease;
+    transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .card--standard:hover img {
+
+  .card--standard:hover .card__media img {
     filter: saturate(1);
   }
 {%- endstyle -%}
@@ -185,12 +190,12 @@
             <ul
               id="product-grid"
               data-id="{{ section.id }}"
+              data-reveal="stagger"
               class="
                 grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
                 grid--{{ section.settings.columns_desktop }}-col-desktop
                 {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
               "
-              data-reveal="stagger"
             >
               {% assign skip_card_product_styles = false %}
               {%- for product in collection.products -%}

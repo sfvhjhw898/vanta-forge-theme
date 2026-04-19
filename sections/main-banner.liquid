@@ -4,6 +4,55 @@
 {% endcomment %}
 
 <style>
+  .vanta-hero {
+    position: relative;
+    min-height: 100vh;
+    background: #050510;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .vanta-hero__glow-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .vanta-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .vanta-hero__glow--1 {
+    width: 600px;
+    height: 600px;
+    top: 10%;
+    left: 20%;
+    background: radial-gradient(circle, rgba(0,102,255,0.18) 0%, transparent 70%);
+    animation: vanta-glow1 8s ease-in-out infinite alternate;
+  }
+
+  .vanta-hero__glow--2 {
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    right: 15%;
+    background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%);
+    animation: vanta-glow2 6s ease-in-out 2s infinite alternate;
+  }
+
+  .vanta-hero__glow--3 {
+    width: 800px;
+    height: 800px;
+    bottom: -20%;
+    left: 40%;
+    background: radial-gradient(circle, rgba(0,66,37,0.06) 0%, transparent 70%);
+    animation: vanta-glow3 10s ease-in-out 4s infinite alternate;
+  }
+
   @keyframes vanta-glow1 {
     from { transform: translate(0, 0); }
     to { transform: translate(40px, -30px); }
@@ -19,64 +68,7 @@
     to { transform: translate(20px, 20px); }
   }
 
-  @keyframes forge-fade-up {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes forge-breathe {
-    0%, 100% { transform: translateY(-50%) scale(1); }
-    50% { transform: translateY(-50%) scale(1.02); }
-  }
-
-  .vanta-banner {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    min-height: 600px;
-    background: #050510;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-  }
-
-  .vanta-banner__glow {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  .vanta-banner__glow--1 {
-    width: 600px;
-    height: 600px;
-    top: 10%;
-    left: 20%;
-    background: radial-gradient(circle, rgba(0, 102, 255, 0.18) 0%, transparent 70%);
-    animation: vanta-glow1 8s ease-in-out infinite alternate;
-  }
-
-  .vanta-banner__glow--2 {
-    width: 400px;
-    height: 400px;
-    top: 50%;
-    right: 15%;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-    animation: vanta-glow2 6s ease-in-out 2s infinite alternate;
-  }
-
-  .vanta-banner__glow--3 {
-    width: 800px;
-    height: 800px;
-    bottom: -20%;
-    left: 40%;
-    background: radial-gradient(circle, rgba(0, 66, 37, 0.06) 0%, transparent 70%);
-    animation: vanta-glow3 10s ease-in-out 4s infinite alternate;
-  }
-
-  .vanta-banner__content {
+  .vanta-hero__content {
     position: absolute;
     top: 50%;
     left: 60px;
@@ -85,45 +77,43 @@
     max-width: 700px;
   }
 
-  .vanta-banner__eyebrow {
-    font-family: 'Geist Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+  .vanta-hero__eyebrow {
+    font-family: 'Geist Mono', monospace;
     font-weight: 500;
     font-size: 11px;
     letter-spacing: 0.2em;
-    text-transform: uppercase;
     color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
     margin-bottom: 1.2rem;
   }
 
-  .vanta-banner__heading {
+  .vanta-hero__heading {
     margin: 0;
     padding: 0;
   }
 
-  .vanta-banner__heading-line {
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  .vanta-hero__heading-line {
+    font-family: 'Geist', sans-serif;
     font-weight: 900;
     font-size: clamp(4rem, 7vw, 7.5rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     color: white;
     margin: 0;
-    padding: 0;
     opacity: 0;
     transform: translateY(40px);
     animation: forge-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    text-wrap: balance;
   }
 
-  .vanta-banner__heading-line:nth-child(2) {
+  .vanta-hero__heading-line:nth-child(1) {
     animation-delay: 0.1s;
   }
 
-  .vanta-banner__heading-line:nth-child(3) {
+  .vanta-hero__heading-line:nth-child(2) {
     animation-delay: 0.2s;
   }
 
-  .vanta-banner__heading-line:nth-child(4) {
+  .vanta-hero__heading-line:nth-child(3) {
     animation-delay: 0.3s;
     background: linear-gradient(135deg, #0066FF, #00D4FF);
     -webkit-background-clip: text;
@@ -131,191 +121,197 @@
     background-clip: text;
   }
 
-  .vanta-banner__specs {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  @keyframes forge-fade-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .vanta-hero__specs {
     margin-top: 2.4rem;
-    font-family: 'Geist Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .vanta-hero__spec {
+    font-family: 'Geist Mono', monospace;
     font-weight: 500;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.35);
   }
 
-  .vanta-banner__specs-separator {
+  .vanta-hero__spec-separator {
     color: rgba(255, 255, 255, 0.15);
   }
 
-  .vanta-banner__buttons {
+  .vanta-hero__buttons {
+    margin-top: 3.2rem;
     display: flex;
     gap: 1.2rem;
-    margin-top: 3.2rem;
+    flex-wrap: wrap;
   }
 
-  .vanta-banner__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  .vanta-hero__button {
+    font-family: 'Geist', sans-serif;
     font-weight: 700;
     font-size: 15px;
-    padding: 14px 32px;
     border-radius: 100px;
+    padding: 14px 32px;
     text-decoration: none;
+    display: inline-block;
     transition: all 0.2s ease;
     cursor: pointer;
-  }
-
-  .vanta-banner__button--primary {
-    background: #0066FF;
-    color: white;
     border: none;
   }
 
-  .vanta-banner__button--primary:hover {
+  .vanta-hero__button--primary {
+    background: #0066FF;
+    color: white;
+  }
+
+  .vanta-hero__button--primary:hover {
     box-shadow: 0 0 30px rgba(0, 102, 255, 0.45);
   }
 
-  .vanta-banner__button--ghost {
+  .vanta-hero__button--ghost {
     background: transparent;
-    color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
   }
 
-  .vanta-banner__button--ghost:hover {
+  .vanta-hero__button--ghost:hover {
     border-color: rgba(255, 255, 255, 0.45);
     background: rgba(255, 255, 255, 0.04);
   }
 
-  .vanta-banner__image {
+  .vanta-hero__image-container {
     position: absolute;
     right: 8%;
     top: 50%;
     transform: translateY(-50%);
     z-index: 4;
     max-width: 280px;
+  }
+
+  .vanta-hero__image {
+    width: 100%;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 40px rgba(0, 102, 255, 0.5));
     animation: forge-breathe 4s ease infinite;
   }
 
+  @keyframes forge-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
   @media (max-width: 1024px) {
-    .vanta-banner__content {
+    .vanta-hero__content {
       left: 40px;
+      max-width: 500px;
     }
 
-    .vanta-banner__image {
+    .vanta-hero__image-container {
       right: 5%;
       max-width: 220px;
-    }
-
-    .vanta-banner__heading-line {
-      font-size: clamp(3rem, 6vw, 5rem);
     }
   }
 
   @media (max-width: 768px) {
-    .vanta-banner {
-      height: auto;
-      min-height: 100vh;
-      padding: 120px 0 80px;
-    }
-
-    .vanta-banner__content {
+    .vanta-hero__content {
       position: relative;
       top: auto;
-      left: 24px;
-      right: 24px;
+      left: 0;
       transform: none;
-      max-width: calc(100% - 48px);
+      padding: 0 24px;
+      margin-top: 20vh;
     }
 
-    .vanta-banner__image {
+    .vanta-hero__image-container {
       position: relative;
       right: auto;
       top: auto;
       transform: none;
-      display: block;
-      margin: 3rem auto 0;
-      max-width: 200px;
+      margin: 4rem auto 0;
+      max-width: 240px;
     }
 
-    .vanta-banner__heading-line {
-      font-size: clamp(2.5rem, 10vw, 4rem);
-    }
-
-    .vanta-banner__specs {
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 12px;
-    }
-
-    .vanta-banner__buttons {
+    .vanta-hero__specs {
       flex-direction: column;
-      gap: 1rem;
+      align-items: flex-start;
+      gap: 0.8rem;
     }
 
-    .vanta-banner__button {
+    .vanta-hero__spec-separator {
+      display: none;
+    }
+
+    .vanta-hero__buttons {
+      flex-direction: column;
+    }
+
+    .vanta-hero__button {
       width: 100%;
       text-align: center;
     }
+  }
 
-    .vanta-banner__glow--1 {
-      width: 400px;
-      height: 400px;
-      left: -10%;
+  @media (prefers-reduced-motion: reduce) {
+    .vanta-hero__glow {
+      animation: none;
     }
 
-    .vanta-banner__glow--2 {
-      width: 300px;
-      height: 300px;
-      right: -10%;
+    .vanta-hero__image {
+      animation: none;
     }
 
-    .vanta-banner__glow--3 {
-      width: 500px;
-      height: 500px;
-      left: 10%;
+    .vanta-hero__heading-line {
+      opacity: 1;
+      transform: none;
+      animation: none;
     }
   }
 </style>
 
-<section class="vanta-banner">
-  <div class="vanta-banner__glow vanta-banner__glow--1"></div>
-  <div class="vanta-banner__glow vanta-banner__glow--2"></div>
-  <div class="vanta-banner__glow vanta-banner__glow--3"></div>
+<section class="vanta-hero">
+  <div class="vanta-hero__glow-container">
+    <div class="vanta-hero__glow vanta-hero__glow--1"></div>
+    <div class="vanta-hero__glow vanta-hero__glow--2"></div>
+    <div class="vanta-hero__glow vanta-hero__glow--3"></div>
+  </div>
 
-  <div class="vanta-banner__content">
-    <div class="vanta-banner__eyebrow">VANTA TECHNOLOGY</div>
+  <div class="vanta-hero__content">
+    <div class="vanta-hero__eyebrow">VANTA TECHNOLOGY</div>
     
-    <h1 class="vanta-banner__heading">
-      <div class="vanta-banner__heading-line" data-forge-split="chars" data-forge-split-anim="wave">
+    <h1 class="vanta-hero__heading">
+      <div class="vanta-hero__heading-line" data-forge-split="chars" data-forge-split-anim="wave">
         {{ section.settings.heading_line1 | default: 'Engineered' }}
       </div>
-      <div class="vanta-banner__heading-line">
+      <div class="vanta-hero__heading-line">
         {{ section.settings.heading_line2 | default: 'Without' }}
       </div>
-      <div class="vanta-banner__heading-line">
+      <div class="vanta-hero__heading-line">
         {{ section.settings.heading_line3 | default: 'Compromise.' }}
       </div>
     </h1>
 
-    <div class="vanta-banner__specs">
-      <span>48hr battery</span>
-      <span class="vanta-banner__specs-separator">·</span>
-      <span>IP68 rated</span>
-      <span class="vanta-banner__specs-separator">·</span>
-      <span>0.3s wake</span>
+    <div class="vanta-hero__specs">
+      <span class="vanta-hero__spec">48hr battery</span>
+      <span class="vanta-hero__spec-separator">·</span>
+      <span class="vanta-hero__spec">IP68 rated</span>
+      <span class="vanta-hero__spec-separator">·</span>
+      <span class="vanta-hero__spec">0.3s wake</span>
     </div>
 
-    <div class="vanta-banner__buttons">
+    <div class="vanta-hero__buttons">
       {%- if section.settings.button_label != blank -%}
         <a 
           href="{{ section.settings.button_link | default: '#' }}" 
-          class="vanta-banner__button vanta-banner__button--primary"
+          class="vanta-hero__button vanta-hero__button--primary"
           data-forge-magnet="0.2"
-          aria-label="{{ section.settings.button_label }}"
         >
           {{ section.settings.button_label }}
         </a>
@@ -324,9 +320,8 @@
       {%- if section.settings.button2_label != blank -%}
         <a 
           href="{{ section.settings.button2_link | default: '#' }}" 
-          class="vanta-banner__button vanta-banner__button--ghost"
+          class="vanta-hero__button vanta-hero__button--ghost"
           data-forge-magnet="0.2"
-          aria-label="{{ section.settings.button2_label }}"
         >
           {{ section.settings.button2_label }}
         </a>
@@ -335,18 +330,19 @@
   </div>
 
   {%- if section.settings.image -%}
-    <img 
-      src="{{ section.settings.image | image_url: width: 560 }}"
-      srcset="{{ section.settings.image | image_url: width: 280 }} 280w,
-              {{ section.settings.image | image_url: width: 560 }} 560w"
-      sizes="(max-width: 768px) 200px, 280px"
-      alt="{{ section.settings.image.alt | escape }}"
-      class="vanta-banner__image"
-      loading="eager"
-      fetchpriority="high"
-      width="280"
-      height="280"
-    >
+    <div class="vanta-hero__image-container">
+      {{
+        section.settings.image
+        | image_url: width: 560
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          width: section.settings.image.width,
+          height: section.settings.image.height,
+          class: 'vanta-hero__image',
+          alt: section.settings.image.alt | default: 'VANTA Technology Product'
+      }}
+    </div>
   {%- endif -%}
 </section>
 
@@ -383,7 +379,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Primary Button Label",
-      "default": "Shop Now"
+      "default": "Explore Now"
     },
     {
       "type": "url",
@@ -394,7 +390,7 @@
       "type": "text",
       "id": "button2_label",
       "label": "Secondary Button Label",
-      "default": "Learn More"
+      "default": "View Specs"
     },
     {
       "type": "url",
