@@ -3,13 +3,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -21,13 +14,9 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "pill",
+            "picker_type": "button",
             "swatch_shape": "circle"
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -40,76 +29,77 @@
           "type": "description",
           "settings": {}
         },
-        "collapsible_tab_1": {
+        "tab_specs": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Technical Specs",
+            "heading": "Specifications",
             "content": ""
           }
         },
-        "collapsible_tab_2": {
+        "tab_shipping": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Shipping & Returns",
-            "content": "Free UK shipping on orders over £40. Returns accepted within 30 days of delivery."
-          }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
+            "content": "Free UK shipping on orders over £40. Free 30-day returns."
           }
         }
       },
       "block_order": [
-        "vendor",
         "title",
         "price",
         "variant_picker",
-        "quantity_selector",
         "buy_buttons",
         "description",
-        "collapsible_tab_1",
-        "collapsible_tab_2",
-        "share"
+        "tab_specs",
+        "tab_shipping"
       ],
       "settings": {
-        "enable_sticky_info": true,
+        "enable_sticky_info": false,
         "color_scheme": "scheme-1",
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
+        "media_size": "large",
+        "constrain_to_viewport": false,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "right",
+        "image_zoom": "hover",
         "hide_variants": false,
         "enable_video_looping": true,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "forge-values": {
+      "type": "forge-values-strip",
+      "settings": {
+        "heading": "Why VANTA Tech?",
+        "color_scheme": "scheme-4",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You might also like",
+        "heading": "Complete the Set",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     }
   },
   "order": [
     "main",
+    "forge-values",
     "related-products"
   ]
 }

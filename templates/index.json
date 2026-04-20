@@ -1,7 +1,7 @@
 {
   "sections": {
     "forge_hero": {
-      "type": "main-banner",
+      "type": "forge-scroll-hero",
       "settings": {
         "heading": "Engineered for the Future.",
         "subheading": "technical · precision · dark — made for Tech-forward professionals aged 25-45 who demand.",

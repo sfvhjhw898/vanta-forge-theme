@@ -21,11 +21,12 @@
   --vanta-tech-surface:       #0D0D1F;
   --vanta-tech-surface-rgb:   13,13,31;
   --vanta-tech-glow:          rgba(0,102,255,0.32);
-  --vanta-tech-glow-bright:   rgba(0,212,255,0.18);
+  --vanta-tech-glow-bright:   rgba(0,212,255,0.08);
 }
 
 /* 2. Typography Override — ALL Dawn heading selectors */
 h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
 .card__heading,
 .banner__heading,
 .featured-collection .title,
@@ -39,73 +40,102 @@ h1, h2, h3, h4, h5, h6,
 .full-unstyled-link,
 .product__title,
 .collection__title,
-.page-title,
-.article__title {
+.article-card__title,
+.blog-card__title,
+.page-title {
   font-family: var(--forge-font-heading) !important;
   letter-spacing: -0.02em !important;
+  text-wrap: balance;
   font-weight: 600 !important;
-  text-wrap: balance !important;
 }
 
-h1,
+h1, .h1,
 .banner__heading,
 .hero__heading,
-.product__title h1 {
+.product__title,
+.collection__title {
   font-size: clamp(3.2rem, 6vw + 0.5rem, 7rem) !important;
+  line-height: 1.05 !important;
   font-weight: 300 !important;
-  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
 }
 
-h2,
+h2, .h2,
 .featured-collection .title,
-.collection__title,
+.image-with-text__heading,
+.rich-text__heading,
 .section-header__heading {
   font-size: clamp(2.4rem, 4vw + 0.5rem, 5rem) !important;
-  font-weight: 600 !important;
   line-height: 1.12 !important;
+  font-weight: 600 !important;
 }
 
-h3,
+h3, .h3,
 .card__heading,
+.collection-card__title,
 .multicolumn-card__title,
-.collection-card__title {
+.footer-block__heading {
   font-size: clamp(1.4rem, 2.5vw + 0.3rem, 2.4rem) !important;
-  font-weight: 600 !important;
   line-height: 1.25 !important;
+  font-weight: 600 !important;
+}
+
+h4, .h4 {
+  font-size: clamp(1.2rem, 2vw + 0.2rem, 1.8rem) !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
 }
 
 body,
-.body-text,
+.body,
 p,
 .card__information,
 .product__description,
+.article__text,
 .rte {
   font-family: var(--forge-font-body) !important;
   font-size: clamp(0.875rem, 1vw + 0.25rem, 1.125rem) !important;
   line-height: 1.65 !important;
-  letter-spacing: -0.005em !important;
+  font-weight: 400 !important;
+}
+
+.caption,
+.caption-with-letter-spacing,
+.product__text,
+.card__badge {
+  font-family: var(--forge-font-body) !important;
+  font-size: clamp(0.75rem, 0.85vw + 0.15rem, 0.95rem) !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.02em !important;
 }
 
 /* 3. Glassmorphic Sticky Nav */
 .header-wrapper {
   transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 100;
 }
 
 .shopify-section-header-sticky .header-wrapper {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   background: rgba(5, 5, 16, 0.85) !important;
-  border-bottom: 1px solid rgba(0, 102, 255, 0.3) !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
 .shopify-section-header-sticky .header {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  background: transparent !important;
+}
+
+.shopify-section-header-sticky .header__heading-link,
+.shopify-section-header-sticky .header__menu-item,
+.shopify-section-header-sticky .header__icon {
+  color: var(--vanta-tech-text) !important;
 }
 
 /* 4. Pill Navigation — FULL CSS Grid Override */
-@media (min-width: 990px) {
+@media screen and (min-width: 990px) {
   .section-header .header {
     display: grid !important;
     grid-template-columns: 1fr auto 1fr !important;
@@ -118,7 +148,7 @@ p,
     justify-self: start !important;
     display: flex !important;
     align-items: center !important;
-    gap: 1rem !important;
+    gap: 1.2rem !important;
     margin: 0 !important;
   }
 
@@ -139,28 +169,39 @@ p,
   background: rgba(0, 102, 255, 0.93) !important;
   border-radius: 100px !important;
   padding: 0.3rem 0.5rem !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 2px 28px rgba(0, 0, 0, 0.3), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.12),
+              0 0 0 1px rgba(0, 102, 255, 0.4) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.2rem !important;
 }
 
 .header__menu-item {
   color: #FFFFFF !important;
   font-size: 1.35rem !important;
+  font-weight: 500 !important;
   padding: 0.65rem 1.3rem !important;
   border-radius: 100px !important;
   transition: background 0.2s ease, transform 0.15s ease !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
-.header__menu-item:hover {
+.header__menu-item:hover,
+.header__menu-item:focus-visible {
   background: rgba(255, 255, 255, 0.10) !important;
-  transform: translateY(-1px) !important;
+  transform: translateY(-1px);
 }
 
-.header__menu-item.active {
+.header__menu-item:active {
+  transform: translateY(0);
+}
+
+.header__active-menu-item {
   background: rgba(255, 255, 255, 0.15) !important;
 }
 
@@ -172,26 +213,41 @@ p,
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border: none !important;
+  padding: 0 2rem !important;
+  position: relative;
+  overflow: hidden;
 }
 
 .announcement-bar__message {
   font-family: var(--forge-font-body) !important;
-  font-weight: 500 !important;
   font-size: 12px !important;
+  font-weight: 500 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.12em !important;
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
+  text-align: center;
+}
+
+.announcement-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.05) 50%, 
+    transparent 100%);
+  animation: forge-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes forge-shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
 }
 
 /* 6. @keyframes — ALL 8 animation definitions */
 @keyframes forge-marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes forge-fade-up {
@@ -269,7 +325,8 @@ p,
     clip-path: inset(0 0 110% 0);
     opacity: 0;
     will-change: clip-path, opacity;
-    transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.5s ease;
   }
 
   [data-reveal="masked"].is-visible {
@@ -281,7 +338,8 @@ p,
     transform: translateY(40px);
     opacity: 0;
     will-change: transform, opacity;
-    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.6s ease;
   }
 
   [data-reveal="slide-up"].is-visible {
@@ -297,7 +355,8 @@ p,
     transform: scale(1.08);
     opacity: 0;
     will-change: transform, opacity;
-    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.8s ease;
   }
 
   [data-reveal="zoom"].is-visible img {
@@ -308,8 +367,9 @@ p,
   [data-reveal="stagger"] > * {
     opacity: 0;
     transform: translateY(30px);
-    will-change: opacity, transform;
-    transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+    transition: opacity 0.6s ease, 
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   [data-reveal="stagger"].is-visible > *:nth-child(1) {
@@ -342,14 +402,6 @@ p,
 
   [data-reveal="stagger"].is-visible > *:nth-child(8) {
     transition-delay: 0.7s;
-  }
-
-  [data-reveal="stagger"].is-visible > *:nth-child(9) {
-    transition-delay: 0.8s;
-  }
-
-  [data-reveal="stagger"].is-visible > *:nth-child(10) {
-    transition-delay: 0.9s;
   }
 
   [data-reveal="stagger"].is-visible > * {
@@ -410,11 +462,13 @@ html.forge-intro-init.forge-intro-play .section-header {
 }
 
 html.forge-intro-init.forge-intro-play .fsh__media-wrap {
-  transition: opacity 0.55s ease 0.5s, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+  transition: opacity 0.55s ease 0.5s, 
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
 }
 
 html.forge-intro-init.forge-intro-play .fsh__titles {
-  transition: opacity 0.5s ease 0.9s, filter 0.5s ease 0.9s;
+  transition: opacity 0.5s ease 0.9s, 
+              filter 0.5s ease 0.9s;
 }
 
 html.forge-intro-init.forge-intro-play .fsh__hint {
@@ -445,30 +499,40 @@ html.forge-intro-play .fsh__hint {
   border: 1px solid var(--vanta-tech-border) !important;
   border-radius: 16px !important;
   overflow: hidden !important;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease,
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
 }
 
 .card-wrapper:hover {
-  box-shadow: 0 0 0 1.5px var(--vanta-tech-primary), 0 0 28px var(--vanta-tech-glow), 0 0 56px var(--vanta-tech-glow-bright) !important;
+  box-shadow: 0 0 0 1.5px var(--vanta-tech-primary), 
+              0 0 28px var(--vanta-tech-glow), 
+              0 0 56px var(--vanta-tech-glow-bright) !important;
   border-color: var(--vanta-tech-primary) !important;
-  transform: translateY(-6px) !important;
+  transform: translateY(-4px);
+}
+
+.card-wrapper.product-card-wrapper {
+  border-radius: 16px !important;
 }
 
 .card.card--standard {
   position: relative;
-  border-radius: 16px;
+  border-radius: 16px !important;
   overflow: hidden;
-  background: var(--vanta-tech-surface);
+  background: var(--vanta-tech-surface) !important;
 }
 
 .card__media {
   background: var(--vanta-tech-surface) !important;
   border-radius: 14px 14px 0 0 !important;
   overflow: hidden !important;
+  position: relative;
 }
 
 .card--media .media img {
-  transition: transform 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-wrapper:hover .card--media .media img {
@@ -481,7 +545,12 @@ html.forge-intro-play .fsh__hint {
   font-weight: 600 !important;
   color: var(--vanta-tech-text) !important;
   font-size: 1.3rem !important;
-  letter-spacing: -0.01em !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.card__heading a:hover {
+  color: var(--vanta-tech-primary) !important;
 }
 
 .card__information {
@@ -492,14 +561,19 @@ html.forge-intro-play .fsh__hint {
 .price {
   color: rgba(255, 255, 255, 0.55) !important;
   font-family: var(--forge-font-body) !important;
+  font-size: 1.1rem !important;
   font-weight: 500 !important;
+}
+
+.price__sale {
+  color: var(--vanta-tech-primary) !important;
 }
 
 .card__badge {
   background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   border-radius: 100px !important;
-  padding: 0.4rem 0.9rem !important;
+  padding: 0.4rem 0.8rem !important;
   font-size: 0.75rem !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
@@ -507,83 +581,75 @@ html.forge-intro-play .fsh__hint {
 }
 
 /* 10. Product Card Reveal Overlay — DISABLED FOR VANTA */
-/* VANTA uses blue glow on hover instead of reveal overlay */
+.forge-reveal {
+  display: none !important;
+}
 
 /* 11. Collection Cards */
 .collection-card {
   border-radius: 2rem !important;
-  overflow: hidden !important;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease !important;
-  background: var(--vanta-tech-surface) !important;
-  border: 1px solid var(--vanta-tech-border) !important;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease;
+  background: var(--vanta-tech-surface);
+  border: 1px solid var(--vanta-tech-border);
 }
 
 .collection-card:hover {
-  transform: translateY(-6px) !important;
-  box-shadow: 0 0 0 1.5px var(--vanta-tech-primary), 0 0 28px var(--vanta-tech-glow) !important;
-  border-color: var(--vanta-tech-primary) !important;
-}
-
-.collection-card__image-wrapper {
-  overflow: hidden;
-}
-
-.collection-card:hover .collection-card__image {
-  transform: scale(1.06);
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 1.5px var(--vanta-tech-primary),
+              0 24px 64px rgba(0, 0, 0, 0.4);
 }
 
 .collection-card__image {
-  transition: transform 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.collection-card:hover .collection-card__image {
+  transform: scale(1.05);
 }
 
 .collection-card__title {
   color: var(--vanta-tech-text) !important;
-  padding: 1.5rem !important;
+  font-weight: 600 !important;
 }
 
 /* 12. Cart Drawer */
-.cart-drawer {
+.drawer {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   background: rgba(5, 5, 16, 0.95) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border-left: 1px solid rgba(0, 102, 255, 0.2) !important;
-  box-shadow: -8px 0 48px rgba(0, 0, 0, 0.6) !important;
+  border-left: 1px solid var(--vanta-tech-border);
+  box-shadow: -4px 0 48px rgba(0, 0, 0, 0.5);
 }
 
-.drawer__inner {
-  background: transparent !important;
+.cart-drawer__header {
+  border-bottom: 1px solid var(--vanta-tech-border);
+  padding: 2rem;
 }
 
-.drawer__header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 2rem !important;
-}
-
-.drawer__heading {
+.cart-drawer__heading {
   color: var(--vanta-tech-text) !important;
-  font-family: var(--forge-font-heading) !important;
-  font-size: 1.8rem !important;
   font-weight: 600 !important;
 }
 
 .cart-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-  padding: 1.5rem 2rem !important;
+  border-bottom: 1px solid var(--vanta-tech-border);
+  padding: 1.5rem 2rem;
 }
 
 .cart-item__name {
   color: var(--vanta-tech-text) !important;
-  font-weight: 600 !important;
 }
 
-.cart-item__price-wrapper {
+.cart-item__price {
   color: rgba(255, 255, 255, 0.65) !important;
 }
 
 .cart-drawer__footer {
-  background: rgba(0, 0, 0, 0.3) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 2rem !important;
+  border-top: 1px solid var(--vanta-tech-border);
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 /* 13. Variant Selectors */
@@ -592,48 +658,50 @@ html.forge-intro-play .fsh__hint {
   border: 1.5px solid var(--vanta-tech-border) !important;
   background: var(--vanta-tech-surface) !important;
   color: var(--vanta-tech-text) !important;
-  padding: 0.7rem 1.4rem !important;
+  padding: 0.8rem 1.4rem !important;
   font-family: var(--forge-font-body) !important;
-  font-weight: 500 !important;
-  transition: border-color 0.2s ease, background 0.2s ease !important;
+  font-size: 1rem !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-form__input:hover {
-  border-color: rgba(0, 102, 255, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
-.product-form__input input[type="radio"]:checked + label {
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
+.product-form__input:focus {
   border-color: var(--vanta-tech-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.15);
+  outline: none;
 }
 
-fieldset.product-form__input .form__label {
+.product-form__input--pill {
   border-radius: 100px !important;
+  padding: 0.6rem 1.2rem !important;
   border: 1.5px solid var(--vanta-tech-border) !important;
-  background: var(--vanta-tech-surface) !important;
+  background: transparent !important;
   color: var(--vanta-tech-text) !important;
-  padding: 0.7rem 1.4rem !important;
-  transition: all 0.2s ease !important;
-  cursor: pointer !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-fieldset.product-form__input .form__label:hover {
-  border-color: rgba(0, 102, 255, 0.4) !important;
+.product-form__input--pill:hover {
+  border-color: var(--vanta-tech-primary) !important;
   background: rgba(0, 102, 255, 0.08) !important;
 }
 
-fieldset.product-form__input input:checked + .form__label {
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
+.product-form__input--pill.active,
+.product-form__input--pill:checked {
   border-color: var(--vanta-tech-primary) !important;
+  background: var(--vanta-tech-primary) !important;
+  color: var(--vanta-tech-text) !important;
 }
 
 /* 14. Filter Chips */
 .facets__form {
-  display: flex !important;
-  gap: 0.8rem !important;
-  flex-wrap: wrap !important;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
 }
 
 .facet-checkbox {
@@ -644,29 +712,32 @@ fieldset.product-form__input input:checked + .form__label {
   padding: 0.6rem 1.2rem !important;
   font-size: 0.95rem !important;
   font-weight: 500 !important;
-  transition: all 0.2s ease !important;
-  cursor: pointer !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .facet-checkbox:hover {
-  border-color: rgba(0, 102, 255, 0.4) !important;
+  border-color: var(--vanta-tech-primary) !important;
   background: rgba(0, 102, 255, 0.08) !important;
 }
 
 .facet-checkbox input:checked + label,
 .facet-checkbox.active {
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
   border-color: var(--vanta-tech-primary) !important;
+  background: var(--vanta-tech-primary) !important;
+  color: var(--vanta-tech-text) !important;
 }
 
 .active-facets__button {
   border-radius: 100px !important;
   background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   border: none !important;
   padding: 0.6rem 1.2rem !important;
-  font-weight: 500 !important;
+  font-size: 0.95rem !important;
 }
 
 /* 15. Marquee Status Strip */
@@ -680,28 +751,32 @@ fieldset.product-form__input input:checked + .form__label {
   position: relative;
 }
 
-.forge-marquee__track {
+.forge-marquee__inner {
+  display: flex;
+  width: 100%;
+}
+
+.forge-marquee-track {
   display: flex;
   align-items: center;
   gap: 3rem;
   animation: forge-marquee 30s linear infinite;
-  will-change: transform;
+  white-space: nowrap;
 }
 
-.forge-marquee:hover .forge-marquee__track {
+.forge-marquee-track:hover {
   animation-play-state: paused;
 }
 
 .forge-marquee__item {
   font-family: 'Geist Mono', 'SF Mono', monospace;
-  font-weight: 500;
   font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  white-space: nowrap;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 3rem;
+  gap: 0.8rem;
 }
 
 .forge-marquee__separator {
@@ -719,59 +794,75 @@ fieldset.product-form__input input:checked + .form__label {
   margin: 0 !important;
 }
 
-.section {
-  padding-top: 80px !important;
-  padding-bottom: 80px !important;
+.section-template {
+  padding: 80px 0;
 }
 
-@media (min-width: 750px) {
-  .section {
-    padding-top: 100px !important;
-    padding-bottom: 100px !important;
+@media screen and (min-width: 750px) {
+  .section-template {
+    padding: 100px 0;
   }
 }
 
-@media (min-width: 990px) {
-  .section {
-    padding-top: 120px !important;
-    padding-bottom: 120px !important;
+@media screen and (min-width: 990px) {
+  .section-template {
+    padding: 120px 0;
   }
 }
 
-.section--dark {
-  background: var(--vanta-tech-secondary) !important;
-  color: var(--vanta-tech-text) !important;
+.section-template--small {
+  padding: 60px 0;
 }
 
-.section--primary {
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
+@media screen and (min-width: 750px) {
+  .section-template--small {
+    padding: 80px 0;
+  }
 }
 
-.section--warm {
-  background: var(--vanta-tech-warm) !important;
-  color: var(--vanta-tech-text) !important;
+.section-template--large {
+  padding: 100px 0;
 }
 
-.section--light {
-  background: #FFFFFF !important;
-  color: #000000 !important;
+@media screen and (min-width: 750px) {
+  .section-template--large {
+    padding: 140px 0;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .section-template--large {
+    padding: 160px 0;
+  }
+}
+
+.page-width {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .page-width {
+    padding: 0 4rem;
+  }
 }
 
 /* 17. Bento Grid — FULL IMPLEMENTATION */
 .forge-bento {
-  padding: 0;
-  margin: 0;
+  padding: 80px 0;
 }
 
 .forge-bento__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--vanta-tech-border);
+  border-radius: 24px;
+  overflow: hidden;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .forge-bento__grid {
     grid-template-columns: 1fr;
   }
@@ -781,11 +872,11 @@ fieldset.product-form__input input:checked + .form__label {
   padding: 3rem;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease;
-  min-height: 320px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
+  min-height: 280px;
 }
 
 .forge-bento__cell:hover {
@@ -797,7 +888,7 @@ fieldset.product-form__input input:checked + .form__label {
   grid-row: 1 / 4;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .forge-bento__cell--tall {
     grid-row: auto;
   }
@@ -807,7 +898,7 @@ fieldset.product-form__input input:checked + .form__label {
   grid-column: 2 / 4;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .forge-bento__cell--wide {
     grid-column: auto;
   }
@@ -815,7 +906,7 @@ fieldset.product-form__input input:checked + .form__label {
 
 .forge-bento__cell--dark {
   background: var(--vanta-tech-primary);
-  color: #FFFFFF;
+  color: var(--vanta-tech-text);
 }
 
 .forge-bento__cell--light {
@@ -840,27 +931,21 @@ fieldset.product-form__input input:checked + .form__label {
   color: var(--vanta-tech-text);
 }
 
-.forge-bento__cell-content {
-  position: relative;
-  z-index: 1;
-}
-
 .forge-bento__cell-title {
-  font-family: var(--forge-font-heading);
-  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 600;
+  line-height: 1.2;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
 }
 
 .forge-bento__cell-text {
   font-size: 1.1rem;
   line-height: 1.6;
   opacity: 0.85;
+  margin-bottom: 1.5rem;
 }
 
 .forge-bento__cell-stat {
-  font-family: var(--forge-font-heading);
   font-size: clamp(3.5rem, 6vw, 6rem);
   font-weight: 300;
   line-height: 1;
@@ -868,10 +953,17 @@ fieldset.product-form__input input:checked + .form__label {
 }
 
 .forge-bento__cell-label {
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   opacity: 0.65;
+}
+
+.forge-bento__cell-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
 }
 
 /* 18. Editorial Our Story */
@@ -880,47 +972,62 @@ fieldset.product-form__input input:checked + .form__label {
 }
 
 .forge-story__section {
-  padding: 8rem 0;
+  padding: 100px 0;
   position: relative;
 }
 
+@media screen and (min-width: 990px) {
+  .forge-story__section {
+    padding: 140px 0;
+  }
+}
+
 .forge-story__section--dark {
-  background: var(--vanta-tech-secondary);
+  background: var(--vanta-tech-surface);
   color: var(--vanta-tech-text);
 }
 
 .forge-story__section--light {
-  background: #FFFFFF;
-  color: #000000;
+  background: var(--vanta-tech-secondary);
+  color: var(--vanta-tech-text);
 }
 
-.forge-story__heading {
-  font-size: clamp(3rem, 6vw, 7rem);
+.forge-story__section--warm {
+  background: var(--vanta-tech-warm);
+  color: var(--vanta-tech-text);
+}
+
+.forge-story__heading-outline {
+  font-size: clamp(4rem, 8vw, 10rem);
   font-weight: 300;
-  line-height: 1.08;
-  margin-bottom: 2rem;
-}
-
-.forge-story__heading--outline {
+  line-height: 1;
   -webkit-text-stroke: 1.5px currentColor;
   -webkit-text-fill-color: transparent;
   text-stroke: 1.5px currentColor;
   text-fill-color: transparent;
+  margin-bottom: 2rem;
+}
+
+.forge-story__heading-filled {
+  font-size: clamp(3rem, 6vw, 7rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 2rem;
 }
 
 .forge-story__number {
   font-size: clamp(12rem, 20vw, 24rem);
   font-weight: 300;
-  line-height: 0.9;
+  line-height: 1;
   -webkit-text-stroke: 2px currentColor;
   -webkit-text-fill-color: transparent;
   text-stroke: 2px currentColor;
   text-fill-color: transparent;
-  opacity: 0.15;
   position: absolute;
-  top: -2rem;
+  top: 50%;
   right: 0;
-  z-index: 0;
+  transform: translateY(-50%);
+  opacity: 0.15;
   pointer-events: none;
 }
 
@@ -931,7 +1038,7 @@ fieldset.product-form__input input:checked + .form__label {
   align-items: start;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .forge-story__grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -944,380 +1051,518 @@ fieldset.product-form__input input:checked + .form__label {
 }
 
 .forge-story__portrait img {
+  border-radius: 20px;
   width: 100%;
   height: auto;
-  border-radius: 1rem;
 }
 
 .forge-story__content {
-  padding-top: 2rem;
+  padding: 2rem 0;
 }
 
 .forge-story__text {
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
   line-height: 1.75;
   margin-bottom: 2rem;
+  opacity: 0.9;
 }
 
-.forge-story__images {
+.forge-story__quote {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-style: italic;
+  line-height: 1.5;
+  padding: 2rem;
+  border-left: 3px solid var(--vanta-tech-primary);
+  margin: 3rem 0;
+  opacity: 0.95;
+}
+
+.forge-story__image-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 4rem;
+  margin: 4rem 0;
 }
 
-.forge-story__images img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0.8rem;
-}
-
-.forge-story__images img:nth-child(1) {
-  transform: translateY(0);
-}
-
-.forge-story__images img:nth-child(2) {
-  transform: translateY(3rem);
-}
-
-.forge-story__images img:nth-child(3) {
-  transform: translateY(1.5rem);
-}
-
-@media (max-width: 989px) {
-  .forge-story__images {
+@media screen and (max-width: 749px) {
+  .forge-story__image-strip {
     grid-template-columns: 1fr;
   }
+}
 
-  .forge-story__images img {
-    transform: translateY(0) !important;
-  }
+.forge-story__image-strip img {
+  border-radius: 16px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.forge-story__image-strip img:nth-child(1) {
+  transform: translateY(-20px);
+}
+
+.forge-story__image-strip img:nth-child(2) {
+  transform: translateY(20px);
+}
+
+.forge-story__image-strip img:nth-child(3) {
+  transform: translateY(-10px);
 }
 
 /* 19. Footer */
 .footer {
   background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
-  padding: 4rem 0 2rem !important;
+  color: var(--vanta-tech-text) !important;
+  padding: 80px 0 40px !important;
+  position: relative;
+}
+
+@media screen and (min-width: 750px) {
+  .footer {
+    padding: 100px 0 50px !important;
+  }
 }
 
 .footer__content-top {
-  padding-bottom: 3rem !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .footer__blocks-wrapper {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-  gap: 3rem !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
 }
 
 .footer-block__heading {
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   font-size: 1.1rem !important;
   font-weight: 600 !important;
-  margin-bottom: 1.2rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
+  margin-bottom: 1.5rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .footer-block__details-content {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.8rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .footer-block__details-content a {
   color: rgba(255, 255, 255, 0.75) !important;
-  text-decoration: none !important;
-  transition: color 0.2s ease !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-size: 1rem;
 }
 
 .footer-block__details-content a:hover {
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
 }
 
 .footer__newsletter {
-  margin-top: 2rem !important;
+  max-width: 500px;
+}
+
+.footer__newsletter-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--vanta-tech-text);
+}
+
+.footer__newsletter-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .newsletter-form__field-wrapper {
-  position: relative !important;
+  position: relative;
 }
 
-.field__input {
+.newsletter-form__field-wrapper input {
+  width: 100%;
   background: transparent !important;
   border: none !important;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
-  color: #FFFFFF !important;
+  color: var(--vanta-tech-text) !important;
   padding: 1rem 0 !important;
   font-size: 1.1rem !important;
-  width: 100% !important;
-  transition: border-color 0.2s ease !important;
+  font-family: var(--forge-font-body) !important;
+  transition: border-color 0.2s ease;
 }
 
-.field__input:focus {
-  border-bottom-color: #FFFFFF !important;
-  outline: none !important;
+.newsletter-form__field-wrapper input:focus {
+  border-bottom-color: var(--vanta-tech-text) !important;
+  outline: none;
 }
 
-.field__input::placeholder {
-  color: rgba(255, 255, 255, 0.5) !important;
+.newsletter-form__field-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .newsletter-form__button {
-  background: #FFFFFF !important;
+  background: var(--vanta-tech-text) !important;
   color: var(--vanta-tech-primary) !important;
   border: none !important;
   border-radius: 100px !important;
-  padding: 0.9rem 2rem !important;
+  padding: 1rem 2rem !important;
+  font-size: 1rem !important;
   font-weight: 600 !important;
-  margin-top: 1rem !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease !important;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-top: 1rem;
 }
 
 .newsletter-form__button:hover {
-  transform: translateY(-2px) !important;
+  transform: translateY(-2px);
 }
 
 .footer__content-bottom {
-  padding-top: 2rem !important;
-  margin-top: 2rem !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 1rem !important;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .footer__copyright {
-  color: rgba(255, 255, 255, 0.65) !important;
-  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+}
+
+.footer__payment {
+  display: flex;
+  gap: 0.8rem;
 }
 
 /* 20. Product Page */
 .product {
-  padding-top: 4rem !important;
-  padding-bottom: 4rem !important;
+  padding: 80px 0;
+}
+
+@media screen and (min-width: 990px) {
+  .product {
+    padding: 100px 0;
+  }
 }
 
 .product__info-wrapper {
-  position: sticky !important;
-  top: 120px !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .product__info-wrapper {
-    position: static !important;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
+}
+
+.product__media-wrapper {
+  position: sticky;
+  top: 120px;
+}
+
+.product__media-item {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.product__info-container {
+  padding: 2rem 0;
 }
 
 .product__title {
   font-size: clamp(2.4rem, 4vw, 4rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
   margin-bottom: 1rem !important;
+  color: var(--vanta-tech-text);
+}
+
+.product__price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--vanta-tech-text);
+  margin-bottom: 2rem;
 }
 
 .product__description {
-  font-size: 1.1rem !important;
-  line-height: 1.7 !important;
-  margin-bottom: 2rem !important;
-  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.5rem;
+}
+
+.product-form {
+  margin-bottom: 2rem;
+}
+
+.product-form__buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .product-form__submit {
-  width: 100% !important;
-  height: 56px !important;
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
-  border: none !important;
+  flex: 1;
+  height: 56px;
   border-radius: 100px !important;
-  font-size: 1.2rem !important;
+  background: var(--vanta-tech-primary) !important;
+  color: var(--vanta-tech-text) !important;
+  border: none !important;
+  font-size: 1.1rem !important;
   font-weight: 600 !important;
-  cursor: pointer !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  margin-top: 1.5rem !important;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
 }
 
 .product-form__submit:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
 }
 
 .product-form__submit:active {
-  transform: translateY(0) !important;
+  transform: translateY(0);
 }
 
 /* 21. Collection Page */
 .collection {
-  padding-top: 4rem !important;
+  padding: 80px 0;
 }
 
-.collection-hero {
-  text-align: center !important;
-  margin-bottom: 4rem !important;
+@media screen and (min-width: 990px) {
+  .collection {
+    padding: 100px 0;
+  }
 }
 
-.collection-hero__title {
+.collection__title {
   font-size: clamp(3.2rem, 6vw, 7rem) !important;
   font-weight: 300 !important;
-  margin-bottom: 1rem !important;
+  line-height: 1.05 !important;
+  margin-bottom: 3rem !important;
+  text-align: center;
+  color: var(--vanta-tech-text);
 }
 
-.collection-hero__description {
-  font-size: 1.2rem !important;
-  color: rgba(255, 255, 255, 0.65) !important;
-  max-width: 600px !important;
-  margin: 0 auto !important;
+.collection__description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .facets-container {
-  margin-bottom: 3rem !important;
-  padding: 1.5rem 0 !important;
-  border-bottom: 1px solid var(--vanta-tech-border) !important;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--vanta-tech-border);
+  margin-bottom: 3rem;
+}
+
+.product-grid-container {
+  margin-top: 3rem;
 }
 
 .product-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
-  gap: 2rem !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
-@media (min-width: 750px) {
+@media screen and (min-width: 750px) {
   .product-grid {
-    gap: 2.5rem !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
   }
 }
 
 /* 22. Buttons */
 .button,
 .shopify-payment-button__button,
-button[type="submit"] {
+button[type="submit"],
+input[type="submit"] {
   border-radius: 100px !important;
+  padding: 1rem 2rem !important;
   font-family: var(--forge-font-body) !important;
+  font-size: 1.1rem !important;
   font-weight: 600 !important;
-  text-transform: none !important;
-  letter-spacing: -0.01em !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  cursor: pointer !important;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-decoration: none;
+  border: none;
 }
 
 .button--primary {
   background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
-  border: none !important;
-  padding: 1rem 2.5rem !important;
-  font-size: 1.1rem !important;
+  color: var(--vanta-tech-text) !important;
 }
 
 .button--primary:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.3);
 }
 
 .button--secondary {
   background: transparent !important;
   color: var(--vanta-tech-text) !important;
   border: 1.5px solid var(--vanta-tech-border) !important;
-  padding: 1rem 2.5rem !important;
-  font-size: 1.1rem !important;
 }
 
 .button--secondary:hover {
   border-color: var(--vanta-tech-primary) !important;
   background: rgba(0, 102, 255, 0.08) !important;
-  transform: translateY(-2px) !important;
+  transform: translateY(-2px);
 }
 
 .button--tertiary {
-  background: transparent !important;
-  color: var(--vanta-tech-primary) !important;
-  border: none !important;
-  text-decoration: underline !important;
-  padding: 0.5rem 1rem !important;
+  background: var(--vanta-tech-text) !important;
+  color: var(--vanta-tech-surface) !important;
 }
 
 .button--tertiary:hover {
-  color: rgba(0, 102, 255, 0.8) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
 }
 
 /* 23. Mobile Enhancements */
-@media (max-width: 749px) {
+@media screen and (max-width: 749px) {
   .button,
   .product-form__submit,
-  .shopify-payment-button__button {
+  .newsletter-form__button,
+  a[role="button"] {
     min-height: 44px !important;
-    padding: 0.8rem 1.8rem !important;
+    min-width: 44px !important;
   }
 
   .header__icon {
-    min-width: 44px !important;
-    min-height: 44px !important;
-  }
-
-  .cart-drawer {
-    width: 100% !important;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .product-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
+    gap: 1.5rem !important;
   }
 
-  .section {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
+  .drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .page-width {
+    padding: 0 1.5rem;
+  }
+
+  .section-template {
+    padding: 60px 0;
+  }
+
+  .forge-bento__cell {
+    padding: 2rem;
+  }
+
+  .forge-story__section {
+    padding: 60px 0;
   }
 }
 
 /* 24. Glassmorphism Utility */
 .glass-panel {
-  background: var(--vanta-tech-glass) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border: 1px solid var(--vanta-tech-glass-border) !important;
-  box-shadow: var(--vanta-tech-glass-shadow) !important;
-  border-radius: 1rem !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: var(--vanta-tech-glass);
+  border: 1px solid var(--vanta-tech-glass-border);
+  box-shadow: var(--vanta-tech-glass-shadow);
+  border-radius: 20px;
+  padding: 2rem;
 }
 
 .glass-panel--dark {
-  background: rgba(5, 5, 16, 0.85) !important;
-  border-color: rgba(0, 102, 255, 0.2) !important;
+  background: rgba(5, 5, 16, 0.85);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel--light {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 /* 25. Focus & Accessibility */
 *:focus-visible {
   outline: 2px solid var(--vanta-tech-primary) !important;
   outline-offset: 3px !important;
-  border-radius: 4px !important;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--vanta-tech-primary) !important;
+  outline-offset: 3px !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-to-content-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 9999;
+  background: var(--vanta-tech-primary);
+  color: var(--vanta-tech-text);
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
 }
 
 .skip-to-content-link:focus {
-  clip: auto !important;
-  overflow: visible !important;
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  background: var(--vanta-tech-primary) !important;
-  color: #FFFFFF !important;
-  padding: 1rem 2rem !important;
-  z-index: 10000 !important;
-}
-
-[aria-hidden="true"] {
-  pointer-events: none !important;
-}
-
-button:disabled,
-button[disabled] {
-  opacity: 0.5 !important;
-  cursor: not-allowed !important;
+  top: 0;
 }
 
 /* 26. Horizontal Scroll Strip */
@@ -1341,7 +1586,7 @@ button[disabled] {
   scroll-snap-align: start;
   width: 80vw;
   max-width: 360px;
-  border-radius: 1rem;
+  border-radius: 20px;
   overflow: hidden;
   background: var(--vanta-tech-surface);
   border: 1px solid var(--vanta-tech-border);
@@ -1358,22 +1603,21 @@ button[disabled] {
   object-fit: cover;
 }
 
-.forge-hscroll__content {
+.forge-hscroll__item-content {
   padding: 1.5rem;
 }
 
-.forge-hscroll__title {
-  font-family: var(--forge-font-heading);
-  font-size: 1.4rem;
+.forge-hscroll__item-title {
+  font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--vanta-tech-text);
 }
 
-.forge-hscroll__text {
+.forge-hscroll__item-text {
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* 27. Grain Texture Overlay */
@@ -1382,14 +1626,14 @@ button[disabled] {
 }
 
 .forge-grain::after {
+  content: '';
   position: absolute;
   inset: 0;
-  content: '';
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .forge-grain > * {
@@ -1404,9 +1648,10 @@ button[disabled] {
   padding: 6rem 0;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 749px) {
   .forge-stats {
     gap: 3rem;
     padding: 4rem 0;
@@ -1415,7 +1660,7 @@ button[disabled] {
 
 .forge-stat {
   text-align: center;
-  min-width: 180px;
+  min-width: 200px;
 }
 
 .forge-stat__number {
@@ -1432,7 +1677,7 @@ button[disabled] {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 500;
 }
 
@@ -1450,6 +1695,12 @@ button[disabled] {
   overflow: hidden;
 }
 
+@media screen and (min-width: 990px) {
+  .forge-overlap {
+    padding: 8rem 0;
+  }
+}
+
 .forge-overlap__img {
   position: absolute;
   top: 0;
@@ -1457,15 +1708,15 @@ button[disabled] {
   width: 55%;
   height: 120%;
   object-fit: cover;
-  border-radius: 1rem 0 0 1rem;
+  border-radius: 24px 0 0 24px;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .forge-overlap__img {
-    position: static;
+    position: relative;
     width: 100%;
     height: 400px;
-    border-radius: 1rem;
+    border-radius: 24px;
     margin-bottom: 2rem;
   }
 }
@@ -1477,7 +1728,7 @@ button[disabled] {
   max-width: 100%;
 }
 
-@media (max-width: 989px) {
+@media screen and (max-width: 989px) {
   .forge-overlap__text {
     padding-right: 0;
   }
@@ -1485,348 +1736,122 @@ button[disabled] {
 
 .forge-overlap__heading {
   font-size: clamp(2.4rem, 4vw, 5rem);
-  font-weight: 300;
-  margin-bottom: 1.5rem;
-  line-height: 1.12;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  color: var(--vanta-tech-text);
 }
 
 .forge-overlap__body {
   font-size: 1.2rem;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2rem;
+}
+
+.forge-overlap__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2rem;
+  background: var(--vanta-tech-primary);
+  color: var(--vanta-tech-text);
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.forge-overlap__cta:hover {
+  transform: translateY(-2px);
 }
 
 /* 30. Brand Typography Personality — TECHNICAL */
 body {
   font-family: var(--forge-font-body);
+  background: var(--vanta-tech-secondary);
+  color: var(--vanta-tech-text);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--forge-font-heading);
+  font-weight: 600;
   letter-spacing: -0.02em;
+}
+
+.forge-mono,
+.forge-technical {
+  font-family: 'Geist Mono', 'SF Mono', 'Roboto Mono', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.forge-label,
+.forge-caption {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   font-weight: 600;
 }
 
 .forge-display {
+  font-size: clamp(4rem, 8vw, 10rem);
   font-weight: 300;
+  line-height: 0.95;
   letter-spacing: -0.03em;
 }
 
-.forge-label,
-.forge-meta {
-  font-family: 'Geist Mono', 'SF Mono', 'Courier New', monospace;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 500;
+.forge-precision {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
+code,
+pre,
 .forge-code {
   font-family: 'Geist Mono', 'SF Mono', monospace;
+  font-size: 0.9em;
   background: rgba(0, 102, 255, 0.08);
   padding: 0.2em 0.5em;
   border-radius: 4px;
-  font-size: 0.9em;
   color: var(--vanta-tech-primary);
 }
 
-.forge-technical-number {
-  font-family: 'Geist Mono', monospace;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
+pre {
+  padding: 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  background: var(--vanta-tech-surface);
+  border: 1px solid var(--vanta-tech-border);
 }
 
-/* Additional Technical Precision Styles */
-.forge-grid-overlay {
-  position: absolute;
-  inset: 0;
+.forge-gradient-text {
+  background: linear-gradient(135deg, var(--vanta-tech-primary) 0%, #00D4FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.forge-outline-text {
+  -webkit-text-stroke: 1.5px currentColor;
+  -webkit-text-fill-color: transparent;
+  text-stroke: 1.5px currentColor;
+  text-fill-color: transparent;
+}
+
+/* Additional Technical Aesthetic Enhancements */
+.forge-grid-bg {
   background-image: 
-    linear-gradient(rgba(0, 102, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-  z-index: 0;
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.forge-scanline {
+.forge-scan-line {
   position: relative;
   overflow: hidden;
 }
 
-.forge-scanline::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 102, 255, 0.03) 50%,
-    transparent 100%
-  );
-  background-size: 100% 4px;
-  animation: forge-scanline-move 8s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes forge-scanline-move {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-.forge-terminal {
-  background: #000000;
-  color: #00FF00;
-  font-family: 'Geist Mono', monospace;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  overflow-x: auto;
-}
-
-.forge-terminal::before {
-  content: '$ ';
-  color: var(--vanta-tech-primary);
-  font-weight: 700;
-}
-
-/* Precision Alignment Utilities */
-.forge-align-optical {
-  margin-left: -0.08em;
-}
-
-.forge-kerning-tight {
-  letter-spacing: -0.04em;
-}
-
-.forge-kerning-loose {
-  letter-spacing: 0.08em;
-}
-
-/* Technical Data Display */
-.forge-data-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.95rem;
-}
-
-.forge-data-row__label {
-  color: rgba(255, 255, 255, 0.55);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.8rem;
-}
-
-.forge-data-row__value {
-  color: var(--vanta-tech-text);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Hover States for Technical Elements */
-.forge-tech-card {
-  background: var(--vanta-tech-surface);
-  border: 1px solid var(--vanta-tech-border);
-  border-radius: 0.8rem;
-  padding: 2rem;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.forge-tech-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 0.8rem;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--vanta-tech-primary), transparent);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.forge-tech-card:hover::before {
-  opacity: 1;
-}
-
-.forge-tech-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 102, 255, 0.15);
-}
-
-/* Monospace Number Display */
-.forge-metric {
-  font-family: 'Geist Mono', monospace;
-  font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  color: var(--vanta-tech-primary);
-}
-
-.forge-metric__unit {
-  font-size: 0.4em;
-  color: rgba(255, 255, 255, 0.45);
-  margin-left: 0.2em;
-}
-
-/* Technical Badge */
-.forge-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background: rgba(0, 102, 255, 0.1);
-  border: 1px solid rgba(0, 102, 255, 0.3);
-  border-radius: 100px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  color: var(--vanta-tech-primary);
-}
-
-.forge-badge::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--vanta-tech-primary);
-  animation: forge-pulse 2s ease-in-out infinite;
-}
-
-@keyframes forge-pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
-/* Status Indicator */
-.forge-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.forge-status__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #00FF00;
-  box-shadow: 0 0 12px rgba(0, 255, 0, 0.6);
-}
-
-.forge-status--offline .forge-status__dot {
-  background: #FF0000;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
-}
-
-.forge-status--warning .forge-status__dot {
-  background: #FFAA00;
-  box-shadow: 0 0 12px rgba(255, 170, 0, 0.6);
-}
-
-/* Technical Divider */
-.forge-divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0, 102, 255, 0.3) 20%,
-    rgba(0, 102, 255, 0.3) 80%,
-    transparent
-  );
-  margin: 3rem 0;
-  position: relative;
-}
-
-.forge-divider::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  background: var(--vanta-tech-primary);
-  border-radius: 50%;
-  box-shadow: 0 0 16px rgba(0, 102, 255, 0.6);
-}
-
-/* Precision Typography Scale */
-.forge-text-xs {
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
-
-.forge-text-sm {
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
-.forge-text-base {
-  font-size: 1rem;
-  line-height: 1.65;
-}
-
-.forge-text-lg {
-  font-size: 1.125rem;
-  line-height: 1.7;
-}
-
-.forge-text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75;
-}
-
-.forge-text-2xl {
-  font-size: 1.5rem;
-  line-height: 1.4;
-}
-
-.forge-text-3xl {
-  font-size: 1.875rem;
-  line-height: 1.3;
-}
-
-.forge-text-4xl {
-  font-size: 2.25rem;
-  line-height: 1.2;
-}
-
-/* Technical Color Utilities */
-.forge-text-primary {
-  color: var(--vanta-tech-primary) !important;
-}
-
-.forge-text-muted {
-  color: rgba(255, 255, 255, 0.55) !important;
-}
-
-.forge-text-subtle {
-  color: rgba(255, 255, 255, 0.35) !important;
-}
-
-.forge-bg-surface {
-  background: var(--vanta-tech-surface) !important;
+.forge-scan-line::before {
